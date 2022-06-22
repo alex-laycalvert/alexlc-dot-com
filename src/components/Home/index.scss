@@ -1,0 +1,31 @@
+@use "../../styles/colors";
+
+.home {
+    margin: 0;
+    padding: 0;
+}
+
+.home-title {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2rem;
+    background-color: colors.$blue-gray;
+    color: colors.$air-green;
+}
+
+.home-title-links {
+    text-decoration: none;
+}
+
+.home-content {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: colors.$hot-gradient;
+    color: white;
+}
