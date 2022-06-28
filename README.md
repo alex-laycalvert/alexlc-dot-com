@@ -8,7 +8,8 @@ I'm a novice software developer and Linux enthusiast.
 
 ## Runnning
 
-```
+```bash
+
 # Clone the repo
 git clone https://github.com/alex-laycalvert/alexlc-dot-com.git
 
@@ -24,4 +25,5 @@ npm run dev
 # To run as production
 npm run build
 npm run start
+
 ```
