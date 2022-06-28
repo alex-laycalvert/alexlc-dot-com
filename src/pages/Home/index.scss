@@ -1,0 +1,54 @@
+@use "../../styles/colors";
+@use "../../styles/tags";
+
+.home {
+    margin: 0;
+    padding: 0;
+
+    .home-title {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 2rem;
+        background: linear-gradient(
+            135deg,
+            colors.$blue-black 0%,
+            colors.$blue-gray 75%
+        );
+        color: colors.$air-green;
+
+        .home-title-block {
+            display: block;
+            width: 300px;
+            height: 100px;
+
+            .home-title-typed {
+                margin-bottom: 10px;
+            }
+
+            .home-title-links {
+                display: flex;
+                justify-content: space-evenly;
+                #{tags.$link-tags} {
+                    color: colors.$air-green;
+                    transition: font-size 0.3s ease-out;
+                }
+                #{tags.$link-hover-tags} {
+                    font-size: 120%;
+                }
+            }
+        }
+    }
+
+    .home-content {
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: colors.$hot-gradient;
+        color: white;
+    }
+}
