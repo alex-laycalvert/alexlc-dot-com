@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Dev from "./pages/Dev";
-import Graph from "./pages/Dev/Graph";
+import OrgChart from "./pages/Dev/OrgChart";
+import DraggableFrame from "./pages/Dev/DraggableFrame";
 import Cards from "./pages/Dev/Cards";
 import "./index.scss";
 
@@ -12,7 +13,11 @@ export default function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/dev" element={<Dev />}></Route>
-                <Route path="/dev/graph" element={<Graph />}></Route>
+                <Route path="/dev/orgchart" element={<OrgChart />}></Route>
+                <Route
+                    path="/dev/draggableframe"
+                    element={<DraggableFrame />}
+                ></Route>
                 <Route path="/dev/cards" element={<Cards />}></Route>
                 <Route path="/*" element={<Home />}></Route>
             </Routes>
