@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./index.scss";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import Draggable from "react-draggable";
 import { OrgChart } from "../../../components/OrgChart";
 import { NodeType } from "../../../components/OrgChart/Node";
 
@@ -111,9 +112,11 @@ const OrgChartPage: React.FC = () => {
                 organization chart. ***A WORK IN PROGRESS***
             </p>
             <div className="chart-container">
-                <div className="chart">
-                    <OrgChart rootNode={rootNode} />
-                </div>
+                <Draggable>
+                    <div className="chart">
+                        <OrgChart rootNode={rootNode} />
+                    </div>
+                </Draggable>
             </div>
         </div>
     );

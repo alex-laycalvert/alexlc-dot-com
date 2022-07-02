@@ -12,6 +12,11 @@
     box-shadow: 0 5px 7px #cccccc;
     border-radius: 10px;
     border: #cccccc 1px solid;
+    transition: transform 0.2s ease-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 
     .org-chart-node-pic {
         border-radius: 30%;
