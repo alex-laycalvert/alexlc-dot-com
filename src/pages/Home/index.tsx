@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Typed from "react-typed";
-import "./index.scss";
+import "./style.scss";
 
 const Home: React.FC = () => {
     const homeTitleRef = useRef<HTMLDivElement>(null);

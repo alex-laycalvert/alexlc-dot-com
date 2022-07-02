@@ -49,8 +49,11 @@
     },
     "devDependencies": {
         "@types/d3": "^7.4.0",
+        "@types/d3-org-chart": "^2.6.1",
         "@types/uuid": "^8.3.4",
         "autoprefixer": "^10.4.7",
+        "d3": "^7.5.0",
+        "d3-org-chart": "^2.6.0",
         "postcss": "^8.4.14",
         "react-draggable": "^4.4.5",
         "react-router-dom": "^6.3.0"

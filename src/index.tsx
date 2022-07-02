@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Dev from "./pages/Dev";
 import OrgChartPage from "./pages/Dev/OrgChart";
-import "./index.scss";
+import "./style.scss";
 
 export default function App() {
     return (
