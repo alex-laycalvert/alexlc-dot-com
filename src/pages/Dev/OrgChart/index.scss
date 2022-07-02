@@ -1,31 +1,17 @@
+$node-width: 300px;
+$node-height: 100px;
+
 .container {
     padding: 10px;
+}
 
-    .org-chart-container {
-        border: green 1px solid;
-        width: 100%;
-        margin: 0px;
-        padding: 0px;
-        overflow: hidden;
+.chart-container {
+    border: green 1px solid;
+    height: 83vh;
+    overflow: hidden;
+}
 
-        .org-chart {
-            display: block;
-            width: 100%;
-            height: 100%;
-            background-color: #eeeeee;
-
-            .node-layer {
-                outline: blue 1px solid;
-                display: flex;
-                justify-content: center;
-
-                .node {
-                    width: 1px;
-                    height: 1px;
-                    background-color: #4477dd;
-                    border: green 1px solid;
-                }
-            }
-        }
-    }
+.chart {
+    display: flex;
+    justify-content: space-between;
 }

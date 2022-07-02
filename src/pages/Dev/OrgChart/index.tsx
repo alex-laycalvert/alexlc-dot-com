@@ -1,60 +1,122 @@
-import React, { useState, useEffect } from "react";
-import Draggable from "react-draggable";
-import { v4 as uuid } from "uuid";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
+import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
+import { OrgChart } from "../../../components/OrgChart";
+import { NodeType } from "../../../components/OrgChart/Node";
 
-interface Node {
-    id: string;
-}
+const OrgChartPage: React.FC = () => {
+    const [rootNode, setRootNode] = useState<NodeType>(null);
 
-const OrgChart: React.FC = () => {
-    const [nodeLayers, setNodeLayers] = useState<Node[][]>([]);
-    const [currentLayer, setCurrentLayer] = useState<number>(0);
-
-    const addNode = () => {
-        if (nodeLayers.length <= currentLayer) {
-            setNodeLayers([...nodeLayers, [{ id: uuid() }]]);
-            if (currentLayer === 0) setCurrentLayer(1);
-            return;
-        }
-        let targetLayer = nodeLayers[currentLayer];
-        const restLayers = nodeLayers.filter((val, i) => {
-            return i !== currentLayer;
+    useEffect(() => {
+        setRootNode({
+            id: uuid(),
+            firstName: "Alex",
+            lastName: "Lay-Calvert",
+            rank: "Super Nerd",
+            image: "/images/ProfilePic.jpeg",
+            children: [
+                {
+                    id: uuid(),
+                    firstName: "Alex",
+                    lastName: "Lay-Calvert",
+                    rank: "Super Nerd",
+                    image: "/images/ProfilePic.jpeg",
+                    children: [
+                        {
+                            id: uuid(),
+                            firstName: "Alex",
+                            lastName: "Lay-Calvert",
+                            rank: "Super Nerd",
+                            image: "/images/ProfilePic.jpeg",
+                            children: [],
+                        },
+                        {
+                            id: uuid(),
+                            firstName: "Alex",
+                            lastName: "Lay-Calvert",
+                            rank: "Super Nerd",
+                            image: "/images/ProfilePic.jpeg",
+                            children: [],
+                        },
+                        {
+                            id: uuid(),
+                            firstName: "Alex",
+                            lastName: "Lay-Calvert",
+                            rank: "Super Nerd",
+                            image: "/images/ProfilePic.jpeg",
+                            children: [],
+                        },
+                        {
+                            id: uuid(),
+                            firstName: "Alex",
+                            lastName: "Lay-Calvert",
+                            rank: "Super Nerd",
+                            image: "/images/ProfilePic.jpeg",
+                            children: [],
+                        },
+                    ],
+                },
+                {
+                    id: uuid(),
+                    firstName: "Alex",
+                    lastName: "Lay-Calvert",
+                    rank: "Super Nerd",
+                    image: "/images/ProfilePic.jpeg",
+                    children: [],
+                },
+                {
+                    id: uuid(),
+                    firstName: "Alex",
+                    lastName: "Lay-Calvert",
+                    rank: "Super Nerd",
+                    image: "/images/ProfilePic.jpeg",
+                    children: [
+                        {
+                            id: uuid(),
+                            firstName: "Alex",
+                            lastName: "Lay-Calvert",
+                            rank: "Super Nerd",
+                            image: "/images/ProfilePic.jpeg",
+                            children: [],
+                        },
+                        {
+                            id: uuid(),
+                            firstName: "Alex",
+                            lastName: "Lay-Calvert",
+                            rank: "Super Nerd",
+                            image: "/images/ProfilePic.jpeg",
+                            children: [],
+                        },
+                    ],
+                },
+                {
+                    id: uuid(),
+                    firstName: "Alex",
+                    lastName: "Lay-Calvert",
+                    rank: "Super Nerd",
+                    image: "/images/ProfilePic.jpeg",
+                    children: [],
+                },
+            ],
         });
-        targetLayer.push({ id: uuid() });
-        setNodeLayers([...restLayers, targetLayer]);
-        if (nodeLayers[currentLayer].length >= 2 ** currentLayer)
-            setCurrentLayer(currentLayer + 1);
-    };
+    }, []);
 
     return (
         <div className="container">
+            <Link to="/">Back Home</Link>
             <h1>Organization Chart</h1>
             <p>
                 Proof of concept and design for an interactive and responsive
-                organization chart.
-                <button onClick={addNode}>Add Node</button>
+                organization chart. ***A WORK IN PROGRESS***
             </p>
-            <div className="org-chart-container">
-                <div className="org-chart">
-                    {nodeLayers.map((nodeLayer: Node[], i) => {
-                        return (
-                            <div key={`node-layer-${i}`} className="node-layer">
-                                {nodeLayer.map((node: Node) => {
-                                    return (
-                                        <div
-                                            key={`node-${node.id}`}
-                                            className="node"
-                                        ></div>
-                                    );
-                                })}
-                            </div>
-                        );
-                    })}
+            <div className="chart-container">
+                <div className="chart">
+                    <OrgChart rootNode={rootNode} />
                 </div>
             </div>
         </div>
     );
 };
 
-export default OrgChart;
+export default OrgChartPage;
