@@ -20,7 +20,9 @@
         "serve": "^13.0.2",
         "typescript": "^4.7.4",
         "uuid": "^8.3.2",
-        "web-vitals": "^2.1.4"
+        "web-vitals": "^2.1.4",
+        "d3": "^7.5.0",
+        "d3-org-chart": "^2.6.0"
     },
     "scripts": {
         "start": "serve -l 3000 build",
@@ -52,8 +54,6 @@
         "@types/d3-org-chart": "^2.6.1",
         "@types/uuid": "^8.3.4",
         "autoprefixer": "^10.4.7",
-        "d3": "^7.5.0",
-        "d3-org-chart": "^2.6.0",
         "postcss": "^8.4.14",
         "react-draggable": "^4.4.5",
         "react-router-dom": "^6.3.0"
