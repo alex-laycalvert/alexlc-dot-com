@@ -1,5 +1,5 @@
 import React from 'react'
-import Typed from 'react-typed'
+import Typewriter from 'typewriter-effect';
 
 import './styles.scss'
 
@@ -23,12 +23,19 @@ const Home: React.FC = () => {
                 <div className="home-title-text">
                     <h1>Alex Lay-Calvert</h1>
                     <div className="home-title-typed">
-                        <Typed
-                            strings={typedStrings}
-                            typeSpeed={55}
-                            backSpeed={40}
-                            backDelay={1000}
-                            loop
+                        <Typewriter
+                            onInit={(typewriter) => {
+                                typewriter.changeDelay(70);
+                                typewriter.changeDeleteSpeed(100);
+                                typedStrings.forEach((str) => {
+                                    typewriter
+                                        .typeString(str)
+                                        .pauseFor(900)
+                                        .deleteAll()
+                                        .pauseFor(250);
+                                });
+                                typewriter.start();
+                            }}
                         />
                     </div>
                 </div>
