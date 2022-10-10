@@ -13,7 +13,11 @@ const Home: React.FC = () => {
         'Linux Enthusiast',
         'Nerd',
         'Installed Arch Linux on the first try',
+        'That was a lie',
+        'It took me 2 days',
+        'And giving up my first born child',
         'Compiled a C program with no errors',
+        'After two hours of looking at Stack Overflow',
         'Never remembers how to vertically align text',
     ];
 
