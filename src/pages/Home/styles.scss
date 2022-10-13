@@ -1,0 +1,35 @@
+@import '../../styles/_colors';
+@import '../../styles/_tags';
+
+.home-title {
+    text-align: center;
+
+    .home-title-text {
+
+        .home-title-typed {
+            font-size: 26px;
+            font-weight: 100;
+        }
+    }
+    margin-bottom: 30px;
+}
+
+.home-links {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+
+    #{$link-tags} {
+        margin-left: 20px;
+        margin-right: 20px;
+        color: $air-green;
+
+        i {
+            transition: scale 0.2s ease-out;
+        }
+
+        i:hover {
+            scale: 1.2;
+        }
+    }
+}

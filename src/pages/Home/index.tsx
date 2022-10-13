@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import Page from '../../components/Page'
 import Typewriter from 'typewriter-effect';
 
 import './styles.scss'
@@ -13,21 +14,21 @@ const Home: React.FC = () => {
         'Linux Enthusiast',
         'Nerd',
         'Installed Arch Linux on the first try',
-        'That was a lie',
-        'It took me 2 days',
-        'And giving up my first born child',
         'Compiled a C program with no errors',
-        'After two hours of looking at Stack Overflow',
         'Never remembers how to vertically align text',
+        'Banned from Stack Overflow at the age of 13',
     ];
 
     return (
-        <div className="home">
+        <Page name="home">
             <div className="home-title">
                 <div className="home-title-text">
                     <h1>Alex Lay-Calvert</h1>
                     <div className="home-title-typed">
                         <Typewriter
+                            options={{
+                                loop: true
+                            }}
                             onInit={(typewriter) => {
                                 typewriter.changeDelay(70);
                                 typewriter.changeDeleteSpeed(100);
@@ -44,21 +45,21 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </div>
-                <div className="home-links">
-                    <a
-                        href="https://github.com/alex-laycalvert/"
-                        target="#"
-                    >
-                        <i className="fa-brands fa-github"></i>
-                    </a>
-                    <a
-                        href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
-                        target="#"
-                    >
-                        <i className="fa-brands fa-linkedin"></i>
-                    </a>
-                </div>
-        </div>
+            <div className="home-links">
+                <a
+                    href="https://github.com/alex-laycalvert/"
+                    target="#"
+                >
+                    <i className="fa-brands fa-github"></i>
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
+                    target="#"
+                >
+                    <i className="fa-brands fa-linkedin"></i>
+                </a>
+            </div>
+        </Page>
     );
 };
 

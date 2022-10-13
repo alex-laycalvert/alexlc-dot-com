@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './components/Home'
+import Home from './pages/Home'
+import About from './pages/About'
+import Projects from './pages/Projects'
+import Resume from './pages/Resume'
 import reportWebVitals from './reportWebVitals';
 
 import './styles.scss';
@@ -10,6 +13,10 @@ const App: React.FC = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path='/home' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/projects' element={<Projects />} />
+                <Route path='/resume' element={<Resume />} />
                 <Route path='/*' element={<Home />} />
             </Routes>
         </BrowserRouter>
