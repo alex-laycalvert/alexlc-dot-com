@@ -24,7 +24,7 @@ const Projects: React.FC = () => {
                             the country."
                         img="essper-logo"
                         imgAlt="Essential Personnel Logo"
-                        imgWidth={1000}
+                        imgWidth="50%"
                     />
                 </div>
                 <div className="project-row">
@@ -34,7 +34,7 @@ const Projects: React.FC = () => {
                         description="A terminal based puzzle game where you light up statues with laser beams and mirrors."
                         img="l1t-logo"
                         imgAlt="l1t Logo Image"
-                        imgWidth={100}
+                        imgWidth="25%"
                     />
                     <ProjectCard
                         link="https://github.com/alex-laycalvert/flashcards.nvim"
@@ -42,7 +42,7 @@ const Projects: React.FC = () => {
                         description="A Neovim plugin to help you study flashcards."
                         img="flashcards-nvim-logo"
                         imgAlt="flashcards.nvim Logo Image"
-                        imgWidth={200}
+                        imgWidth="50%"
                     />
                     <ProjectCard
                         link="https://github.com/alex-laycalvert/yaam.nvim"
@@ -50,7 +50,7 @@ const Projects: React.FC = () => {
                         description="A Neovim plugin to help keep track of your agenda and TODO items using telescope.nvim."
                         img="yaam-logo"
                         imgAlt="yaam.nvim Logo Image"
-                        imgWidth={250}
+                        imgWidth="60%"
                     />
                 </div>
             </div>
