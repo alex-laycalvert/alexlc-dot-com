@@ -8,7 +8,7 @@ interface Props {
     description: string;
     img: string;
     imgAlt: string;
-    imgWidth: number;
+    imgWidth: string;
 };
 
 const ProjectCard: React.FC<Props> = ({
