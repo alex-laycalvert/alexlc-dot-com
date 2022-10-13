@@ -1,0 +1,42 @@
+@import '../../styles/_colors.scss';
+@import '../../styles/_tags.scss';
+
+
+.home-title {
+    text-align: center;
+    color: $air-green;
+
+    .home-title-text {
+        h1 {
+            font-size: 40px;
+            font-weight: 300;
+            margin-bottom: 10;
+        }
+
+        .home-title-typed {
+            font-size: 26px;
+            font-weight: 100;
+        }
+    }
+    margin-bottom: 30px;
+}
+
+.home-links {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+
+    a {
+        margin-left: 20px;
+        margin-right: 20px;
+        color: $air-green;
+
+        i {
+            transition: scale 0.2s ease-out;
+        }
+
+        i:hover {
+            scale: 1.2;
+        }
+    }
+}
