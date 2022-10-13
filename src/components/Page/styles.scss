@@ -11,6 +11,17 @@
     margin: 0;
     background: linear-gradient(135deg, $blue-black 0%, $blue-gray 75%);
     opacity: 0.99;
+    color: $air-green;
+
+    h1 {
+        font-size: 40px;
+        font-weight: 300;
+    }
+
+    h2 {
+        font-size: 30px;
+        font-weight: 300;
+    }
 }
 
 .alexlc-icon {

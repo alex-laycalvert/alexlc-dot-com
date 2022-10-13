@@ -1,17 +1,10 @@
-@import '../../styles/_colors.scss';
-@import '../../styles/_tags.scss';
-
+@import '../../styles/_colors';
+@import '../../styles/_tags';
 
 .home-title {
     text-align: center;
-    color: $air-green;
 
     .home-title-text {
-        h1 {
-            font-size: 40px;
-            font-weight: 300;
-            margin-bottom: 10;
-        }
 
         .home-title-typed {
             font-size: 26px;
@@ -26,7 +19,7 @@
     justify-content: center;
     font-size: 40px;
 
-    a {
+    #{$link-tags} {
         margin-left: 20px;
         margin-right: 20px;
         color: $air-green;
