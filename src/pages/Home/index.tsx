@@ -12,7 +12,7 @@ const Home: React.FC = () => {
         'U.S. Marine',
         'Neovim User',
         'Linux Enthusiast',
-        'Nerd',
+        'Crashbox Puzzle Master',
         'Installed Arch Linux on the first try',
         'Compiled a C program with no errors',
         'Never remembers how to vertically align text',
