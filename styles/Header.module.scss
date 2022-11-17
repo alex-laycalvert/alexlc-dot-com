@@ -1,0 +1,45 @@
+@import "./variables";
+
+.ALHeader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 $spacing;
+    user-select: none;
+
+    .side {
+        width: 50%;
+        display: flex;
+        align-items: center;
+    }
+
+    .right {
+        justify-content: flex-end;
+    }
+
+    .imageWrapper {
+        padding: 0 3px;
+        padding-top: 5px;
+        border-radius: 5px;
+    }
+
+    h1 {
+        margin-left: $spacing;
+        font-weight: 300;
+        font-size: 2.5rem;
+    }
+
+    .dotSeparator {
+        margin-left: $spacing;
+        font-size: 1.5rem;
+        margin-top: -0.75rem;
+        color: $al-orange;
+        cursor: default;
+    }
+
+    .typewriter {
+        margin-left: $spacing;
+        font-size: 1.25rem;
+        font-weight: 200;
+    }
+}

@@ -1,0 +1,31 @@
+@import "./variables";
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto Mono", monospace;
+    color: $al-light-green;
+    background: black;
+    background: linear-gradient(333deg, black 0%, rgba(4, 10, 92, 1) 100%);
+    height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+//@media (prefers-color-scheme: dark) {
+//    html {
+//        color-scheme: dark;
+//    }
+//    body {
+//        color: white;
+//        background: black;
+//    }
+//}
