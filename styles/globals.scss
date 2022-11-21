@@ -4,10 +4,10 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: "Roboto Mono", monospace;
+    font-family: "Roboto", sans-serif;
     color: $al-light-green;
     background: black;
-    background: linear-gradient(333deg, black 0%, rgba(4, 10, 92, 1) 100%);
+    background: linear-gradient(107.56deg, $al-blue-black 0%, $al-blue-gray 100%);
     height: 100vh;
 }
 
@@ -18,6 +18,9 @@ a {
 
 * {
     box-sizing: border-box;
+}
+
+main {
 }
 
 //@media (prefers-color-scheme: dark) {

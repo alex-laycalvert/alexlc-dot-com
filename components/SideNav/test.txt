@@ -1,0 +1,139 @@
+    const contentRef = useRef<HTMLDivElement>(null);
+    const landedRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({ container: contentRef });
+    const [currentMargin, setCurrentMargin] = useState(0);
+
+const SIDE_NAV_FACTOR = 258;
+    const [landedOn, setLandedOn] = useState<"hello" | "about" | "contact">("hello");
+
+    useEffect(() => {
+        if (!landedRef.current || !contentRef.current) {
+            return;
+        }
+        if (currentMargin >= 0 && currentMargin < 0.2) {
+            landedRef.current.style.marginTop = "120px";
+            setLandedOn("hello");
+        }
+        if (currentMargin >= 0.2 && currentMargin < 0.8) {
+            landedRef.current.style.marginTop = `${contentRef.current.clientHeight / 2 - 8}px`;
+            setLandedOn("about");
+        }
+        if (currentMargin >= 0.8) {
+            landedRef.current.style.marginTop = `${contentRef.current.clientHeight - 135.5}px`;
+            setLandedOn("contact");
+        }
+    }, [currentMargin]);
+
+    useEffect(() => {
+        scrollYProgress.onChange((latest) => {
+            if (contentRef?.current?.clientHeight) {
+                setCurrentMargin(latest);
+            }
+        });
+    }, []);
+
+            <div className={styles.sideNav}>
+                <div className={styles.sideNavLine}></div>
+                <motion.div
+                    className={styles.sideNavProgress}
+                    style={{
+                        marginTop:
+                            currentMargin *
+                            ((contentRef?.current?.clientHeight ?? 0) - SIDE_NAV_FACTOR),
+                    }}
+                />
+                <div className={styles.helloWorldStop}>
+                    <button className={landedOn === "hello" ? styles.landedOn : ""}>
+                        Hello, World!
+                    </button>
+                </div>
+                <div className={styles.aboutMeStop}>
+                    <button className={landedOn === "about" ? styles.landedOn : ""}>
+                        About Me
+                    </button>
+                </div>
+                <div className={styles.contactMeStop}>
+                    <button className={landedOn === "contact" ? styles.landedOn : "button"}>
+                        Contact Me
+                    </button>
+                </div>
+                <div ref={landedRef} className={styles.landed}></div>
+            </div>
+
+
+
+
+
+
+
+
+.sideNav {
+    width: $side-nav-width;
+    position: absolute;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+
+    .sideNavLine {
+        width: 3px;
+        height: 100%;
+        background: $al-light-green;
+    }
+
+    .sideNavProgress {
+        position: absolute;
+        top: 25px;
+        width: 5px;
+        height: 208px;
+        border-radius: 10px;
+        background: $al-orange;
+    }
+
+    .helloWorldStop,
+    .aboutMeStop,
+    .contactMeStop {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        border: 2px solid $al-light-green;
+        background: $al-blue-black;
+        user-select: none;
+
+        button {
+            all: unset;
+            white-space: nowrap;
+            margin-left: 40px;
+            font-weight: 100;
+            transition: scale 0.15s ease;
+
+            &:hover {
+                scale: 1.25;
+            }
+
+            &.landedOn {
+                scale: 1.25;
+            }
+        }
+    }
+
+    .helloWorldStop {
+        top: 115px;
+    }
+
+    .contactMeStop {
+        bottom: 115px;
+    }
+    
+    .landed {
+        position: absolute;
+        top: 0;
+        height: 15px;
+        width: 15px;
+        border-radius: 100%;
+        background: $al-orange;
+    }
+}

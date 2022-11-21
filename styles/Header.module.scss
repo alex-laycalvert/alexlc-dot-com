@@ -6,6 +6,7 @@
     align-items: center;
     padding: 0 $spacing;
     user-select: none;
+    height: 15vh;
 
     .side {
         width: 50%;
@@ -18,15 +19,15 @@
     }
 
     .imageWrapper {
-        padding: 0 3px;
+        padding: 0 5px;
         padding-top: 5px;
         border-radius: 5px;
     }
 
     h1 {
         margin-left: $spacing;
-        font-weight: 300;
-        font-size: 2.5rem;
+        font-weight: 200;
+        font-size: 3rem;
     }
 
     .dotSeparator {
