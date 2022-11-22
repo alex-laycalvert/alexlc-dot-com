@@ -27,7 +27,7 @@ export default function Home() {
             <article ref={contentRef} className={styles.ALArticle}>
                 <div className={styles.section}>
                     <div className={styles.content}>
-                        <h2>Hi, I'm Alex</h2>
+                        <h2>Hi, I&apos;m Alex</h2>
                         <div className={styles.buttonWrapper}>
                             <button className={styles.jumpToContact}>
                                 <u>
