@@ -9,14 +9,15 @@ interface Props {
 }
 
 export default function Article({ children, useScrollProgress, scrollYProgress }: Props) {
-    if (!scrollYProgress) {
-        scrollYProgress = useScroll().scrollYProgress;
-    }
+    const internalScrollYProgress = useScroll().scrollYProgress;
 
     return (
         <article className={styles.ALArticle}>
             {useScrollProgress && (
-                <motion.div className={styles.sideNav} style={{ scaleX: scrollYProgress }} />
+                <motion.div
+                    className={styles.sideNav}
+                    style={{ scaleX: scrollYProgress ?? internalScrollYProgress }}
+                />
             )}
             {children}
         </article>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from "uuid";
 
 import styles from "../../styles/Navbar.module.scss";
 
