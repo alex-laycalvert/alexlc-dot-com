@@ -1,0 +1,38 @@
+@import "./variables";
+
+.container {
+    height: 100vh;
+    width: 100%;
+    padding-top: 15vh;
+}
+
+.clientsWrapper {
+    max-width: 50%;
+    padding: $spacing;
+}
+
+.client {
+    border: 1px solid $al-orange;
+    padding: $spacing;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .clientLogo {
+        border-radius: 50%;
+    }
+
+    .clientDetails {
+        margin-left: $spacing;
+        h3 {
+            font-size: 2rem;
+            font-weight: 100;
+            margin: 0;
+        }
+
+        .clientStartDate {
+            font-weight: 0.75rem;
+            font-weight: 100;
+        }
+    }
+}

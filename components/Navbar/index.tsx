@@ -18,10 +18,10 @@ export default function Navbar() {
         //    name: "Projects",
         //    route: "/projects",
         //},
-        //{
-        //    name: "Clients",
-        //    route: "/clients",
-        //},
+        {
+            name: "Clients",
+            route: "/clients",
+        },
         {
             name: "Resume",
             route: "/resume",
