@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import "../styles/globals.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
-    console.log(Component);
     return (
         <>
             <Head>

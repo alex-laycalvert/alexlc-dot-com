@@ -1,6 +1,7 @@
 @import "./variables";
 
 .ALHeader {
+    position: fixed;
     width: 100%;
     display: flex;
     align-items: center;
@@ -8,6 +9,7 @@
     user-select: none;
     height: 15vh;
     box-shadow: 0 5px 8px $al-blue-black;
+    background: $al-blue-gray;;
 
     .side {
         width: 50%;

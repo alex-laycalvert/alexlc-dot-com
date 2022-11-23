@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { v4 as uuid } from 'uuid'
 
 import styles from "../../styles/Navbar.module.scss";
 
@@ -13,14 +14,14 @@ export default function Navbar() {
             name: "Home",
             route: "/",
         },
-        {
-            name: "Projects",
-            route: "/projects",
-        },
-        {
-            name: "Clients",
-            route: "/clients",
-        },
+        //{
+        //    name: "Projects",
+        //    route: "/projects",
+        //},
+        //{
+        //    name: "Clients",
+        //    route: "/clients",
+        //},
         {
             name: "Resume",
             route: "/resume",

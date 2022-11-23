@@ -7,8 +7,8 @@ body {
     font-family: "Roboto", sans-serif;
     color: $al-light-green;
     background: black;
-    background: linear-gradient(107.56deg, $al-blue-black 0%, $al-blue-gray 100%);
     height: 100vh;
+    -ms-overflow-style: none;
 }
 
 a {

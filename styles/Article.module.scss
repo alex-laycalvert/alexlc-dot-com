@@ -1,0 +1,15 @@
+@import "./variables";
+
+.ALArticle {
+    background: linear-gradient(107.56deg, $al-blue-black 0%, $al-blue-gray 100%);
+
+    .sideNav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        right: 0;
+        height: 8px;
+        background: $al-orange;
+    }
+}
+

@@ -1,16 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useScroll } from "framer-motion";
+import Article from "../components/Article";
+import { DoubleUpArrow, DoubleDownArrow, Clipboard, ClipboardCheck } from "../components/icons";
 
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
-    const contentRef = useRef<HTMLDivElement>(null);
-
     const [showCopied, setShowCopied] = useState(false);
-
-    const { scrollYProgress } = useScroll({ container: contentRef });
+    const [scrollDownOpacity, setScrollDownOpacity] = useState(1);
+    const [scrollUpOpacity, setScrollUpOpacity] = useState(0);
 
     useEffect(() => {
         if (!showCopied) {
@@ -21,86 +21,125 @@ export default function Home() {
         }, 2500);
     }, [showCopied]);
 
+    useEffect(() => {
+        scrollYProgress.onChange((latest) => {
+            setScrollUpOpacity(0);
+            setScrollDownOpacity(0);
+            if (latest <= 0.1) {
+                setScrollDownOpacity(0.5);
+                return;
+            }
+            if (latest <= 0.05) {
+                setScrollDownOpacity(1);
+                return;
+            }
+            if (latest >= 0.9) {
+                setScrollUpOpacity(0.5);
+                return;
+            }
+            if (latest >= 0.95) {
+                setScrollUpOpacity(1);
+                return;
+            }
+        });
+    }, []);
+
+    const { scrollYProgress } = useScroll();
+
+    const emailOnClick = () => {
+        navigator.clipboard.writeText("alex.laycalvert@gmail.com");
+        setShowCopied(true);
+    };
+
     return (
-        <div className={styles.container}>
-            <motion.div className={styles.sideNav} style={{ scaleY: scrollYProgress }} />
-            <article ref={contentRef} className={styles.ALArticle}>
-                <div className={styles.section}>
-                    <div className={styles.content}>
-                        <h2>Hi, I&apos;m Alex</h2>
-                        <div className={styles.buttonWrapper}>
-                            <button className={styles.jumpToContact}>
-                                <u>
-                                    <i>Contact Me</i>
-                                </u>
-                            </button>
-                        </div>
+        <Article scrollYProgress={scrollYProgress} useScrollProgress>
+            <div id="home" className={styles.section}>
+                <div>
+                    <h2>Hi, I&apos;m Alex</h2>
+                    <br />
+                    <Link className={styles.textLink} href="#contact">
+                        <u>
+                            <i>Contact Me</i>
+                        </u>
+                    </Link>
+                </div>
+            </div>
+            <div id="about" className={styles.section}>
+                <div>
+                    <h2>About Me</h2>
+                    <div className={styles.aboutMeWrapper}>
+                        <Image
+                            className={styles.headshot}
+                            src="/assets/images/headshot.jpg"
+                            alt="Alex L-C Headshot"
+                            width={150}
+                            height={150}
+                        />
+                        <p>
+                            I am a Web Developer, U.S. Marine Reservist, and student at University
+                            of South Carolina. I am passionate about software developing and
+                            technology and spend a lot of my freetime working on side projects and
+                            learning as much as I can.
+                        </p>
                     </div>
                 </div>
-                <div className={styles.section}>
-                    <div className={styles.content}>
-                        <h2>About Me</h2>
+            </div>
+            <div id="contact" className={styles.section}>
+                <div>
+                    <h2>Contact Me</h2>
+                    <p>
+                        Email me to talk about contracting and building your next web application at
+                        &nbsp;
+                        <button
+                            className={`${styles.emailButton} ${
+                                showCopied ? styles.copiedText : ""
+                            }`}
+                            onClick={emailOnClick}
+                        >
+                            <u>
+                                <i>
+                                    alex.laycalvert@gmail.com
+                                    {showCopied && <ClipboardCheck />}
+                                    {!showCopied && <Clipboard />}
+                                </i>
+                            </u>
+                        </button>
                         <br />
                         <br />
-                        <div className={styles.aboutMeWrapper}>
-                            <Image
-                                src="/assets/images/headshot.jpg"
-                                alt="Alex L-C Headshot"
-                                width={200}
-                                height={200}
-                            />
-                            <p>
-                                I am a Web Developer and current student at Unviersity of South
-                                Carolina. I am also a U.S. Marine Reservist and work as a Data
-                                Systems Administrator. I am incredibly passionate about all things
-                                Computer Science and spend most of my time devloping/improving
-                                applications for my clients and employers.
-                            </p>
-                        </div>
-                    </div>
+                        You can also find me on&nbsp;
+                        <Link className={styles.textLink} href="https://github.com/alex-laycalvert">
+                            <u>
+                                <i>GitHub</i>
+                            </u>
+                        </Link>
+                        &nbsp; and&nbsp;
+                        <Link
+                            className={styles.textLink}
+                            href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
+                        >
+                            <u>
+                                <i>LinkedIn</i>
+                            </u>
+                        </Link>
+                        .
+                    </p>
+                    <br />
+                    <br />
+                    <Link className={styles.textLink} href="#home">
+                        <u>
+                            <i>Back to Top</i>
+                        </u>
+                    </Link>
                 </div>
-                <div className={styles.section}>
-                    <div className={styles.content}>
-                        <h2>Contact Me</h2>
-                        <div className={styles.contactWrapper}>
-                            <p>
-                                To get in touch with me about contracting and building your next app, email me at&nbsp;
-                                {showCopied && (
-                                    <div className={styles.copiedText}>Copied to Clipboard</div>
-                                )}
-                                <button
-                                    onClick={(_e) => {
-                                        navigator.clipboard.writeText("alex.laycalvert@gmail.com");
-                                        setShowCopied(true);
-                                    }}
-                                >
-                                    <u>
-                                        <i>alex.laycalvert@gmail.com</i>
-                                    </u>
-                                </button>
-                                <div className={styles.linkWrapper}>
-                                    Or, visit my&nbsp;
-                                    <Link target="blank" href="https://github.com/alex-laycalvert">
-                                        <u>
-                                            <i>GitHub</i>
-                                        </u>
-                                    </Link>
-                                    &nbsp; or&nbsp;
-                                    <Link
-                                        target="blank"
-                                        href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
-                                    >
-                                        <u>
-                                            <i>LinkedIn</i>
-                                        </u>
-                                    </Link>
-                                    .
-                                </div>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
+            </div>
+            <div className={styles.scrollUp} style={{ opacity: scrollUpOpacity }}>
+                <DoubleUpArrow />
+                Scroll Up <DoubleUpArrow />
+            </div>
+            <div className={styles.scrollDown} style={{ opacity: scrollDownOpacity }}>
+                <DoubleDownArrow />
+                Scroll Down <DoubleDownArrow />
+            </div>
+        </Article>
     );
 }
