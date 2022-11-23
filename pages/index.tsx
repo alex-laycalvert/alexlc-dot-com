@@ -87,9 +87,11 @@ export default function Home() {
             <div id="contact" className={styles.section}>
                 <div>
                     <h2>Contact Me</h2>
-                    <p>
-                        Email me to talk about contracting and building your next web application at
-                        &nbsp;
+                    <br />
+                    <div>
+                        Email me to talk about contracting and building your
+                        <br />
+                        next web application at&nbsp;
                         <button
                             className={`${styles.emailButton} ${
                                 showCopied ? styles.copiedText : ""
@@ -122,7 +124,7 @@ export default function Home() {
                             </u>
                         </Link>
                         .
-                    </p>
+                    </div>
                     <br />
                     <br />
                     <Link className={styles.textLink} href="#home">
