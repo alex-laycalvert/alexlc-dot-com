@@ -45,7 +45,7 @@ export default function Navbar({ showDropdown, toggleShowDropdown }: Props) {
                 {showDropdown && (
                     <div className={styles.dropdownMenu}>
                         <ul className={styles.navLinks}>
-                            {pages.map((page, i, arr) => {
+                            {pages.map((page) => {
                                 return (
                                     <li key={uuid()} className={styles.navLink}>
                                         <Link href={page.route}>{page.name}</Link>
@@ -63,7 +63,7 @@ export default function Navbar({ showDropdown, toggleShowDropdown }: Props) {
                             <li key={uuid()} className={styles.navLink}>
                                 <Link href={page.route}>{page.name}</Link>
                             </li>
-                            {i !== arr.length - 1 && <div className={styles.dotSeparator}>.</div>}
+                            {i !== arr.length - 1 && <div key={uuid()} className={styles.dotSeparator}>.</div>}
                         </>
                     );
                 })}

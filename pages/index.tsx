@@ -108,7 +108,11 @@ export default function Home() {
                         <br />
                         <br />
                         You can also find me on&nbsp;
-                        <Link className={styles.textLink} href="https://github.com/alex-laycalvert">
+                        <Link
+                            className={styles.textLink}
+                            href="https://github.com/alex-laycalvert"
+                            target="#blank"
+                        >
                             <u>
                                 <i>GitHub</i>
                             </u>
@@ -117,6 +121,7 @@ export default function Home() {
                         <Link
                             className={styles.textLink}
                             href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
+                            target="#blank"
                         >
                             <u>
                                 <i>LinkedIn</i>
