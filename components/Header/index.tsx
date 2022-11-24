@@ -4,19 +4,25 @@ import Navbar from "../Navbar";
 
 import styles from "../../styles/Header.module.scss";
 
-export default function Header() {
+interface Props {
+    showDropdown: boolean;
+    toggleShowDropdown: () => void;
+}
+
+export default function Header({ showDropdown, toggleShowDropdown }: Props) {
     const typedStrings = ["Developer", "U.S. Marine", "Linux Enthusiast", "Neovim User"];
 
     return (
         <header className={styles.ALHeader}>
             <div className={styles.side}>
                 <div className={styles.imageWrapper}>
-                <Image
-                    src="/assets/images/logo.png"
-                    alt="AL Development Logo"
-                    width={75}
-                    height={75}
-                /></div>
+                    <Image
+                        src="/assets/images/logo.png"
+                        alt="AL Development Logo"
+                        width={75}
+                        height={75}
+                    />
+                </div>
                 <h1>Alex L-C</h1>
                 <div className={styles.dotSeparator}>.</div>
                 <div className={styles.typewriter}>
@@ -36,7 +42,7 @@ export default function Header() {
                 </div>
             </div>
             <div className={`${styles.side} ${styles.right}`}>
-                <Navbar />
+                <Navbar showDropdown={showDropdown} toggleShowDropdown={toggleShowDropdown} />
             </div>
         </header>
     );

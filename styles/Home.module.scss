@@ -107,13 +107,22 @@
     }
 }
 
-//@media (max-width: 600px) {
-//    .grid {
-//        width: 100%;
-//        flex-direction: column;
-//    }
-//}
-//
+@media (max-width: 600px) {
+    .aboutMeWrapper {
+        display: flex;
+        flex-direction: column;
+
+        p {
+            width: 100%;
+        }
+    }
+
+    .contactWrapper {
+        margin: auto;
+        width: 50%;
+    }
+}
+
 //@media (prefers-color-scheme: dark) {
 //    .card,
 //    .footer {

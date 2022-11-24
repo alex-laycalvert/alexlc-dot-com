@@ -12,6 +12,8 @@ export default function Home() {
     const [scrollDownOpacity, setScrollDownOpacity] = useState(1);
     const [scrollUpOpacity, setScrollUpOpacity] = useState(0);
 
+    const { scrollYProgress } = useScroll();
+
     useEffect(() => {
         if (!showCopied) {
             return;
@@ -42,9 +44,7 @@ export default function Home() {
                 return;
             }
         });
-    }, []);
-
-    const { scrollYProgress } = useScroll();
+    }, [scrollYProgress]);
 
     const emailOnClick = () => {
         navigator.clipboard.writeText("alex.laycalvert@gmail.com");
@@ -88,10 +88,9 @@ export default function Home() {
                 <div>
                     <h2>Contact Me</h2>
                     <br />
-                    <div>
-                        Email me to talk about contracting and building your
-                        <br />
-                        next web application at&nbsp;
+                    <div className={styles.contactWrapper}>
+                        Email me to talk about contracting and building your next web application
+                        at&nbsp;
                         <button
                             className={`${styles.emailButton} ${
                                 showCopied ? styles.copiedText : ""

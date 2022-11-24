@@ -65,3 +65,20 @@ export function Clipboard() {
         </svg>
     );
 }
+
+export function ThreeLines() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1.17em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 28 24"
+        >
+            <path
+                fill="currentColor"
+                d="M2.61 0h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22zm0 9.39h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22zm0 9.391h22.431a2.61 2.61 0 1 1 0 5.22H2.61a2.61 2.61 0 1 1 0-5.22z"
+            />
+        </svg>
+    );
+}
