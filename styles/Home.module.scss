@@ -16,29 +16,7 @@
         font-weight: 200;
     }
 
-    .emailButton {
-        all: unset;
-
-        svg {
-            width: 1.4rem;
-            height: 1.4rem;
-            translate: 0 0.4rem;
-            margin-left: 5px;
-        }
-
-        &.copiedText::after {
-            position: absolute;
-            content: "Copied to Clipboard";
-            translate: 0 0.5rem;
-            margin-left: 5px;
-            color: $al-orange;
-            animation-name: showCopiedText;
-            animation-duration: 2.5s;
-        }
-    }
-
-    .textLink,
-    .emailButton {
+    .textLink {
         transition: color 0.2s ease;
 
         &:hover {
@@ -49,9 +27,11 @@
     .aboutMeWrapper {
         margin-top: $spacing;
         display: flex;
+        width: 50%;
         justify-content: center;
         align-items: center;
         text-align: left;
+        margin: auto;
 
         p {
             margin-left: calc($spacing * 4);
@@ -63,6 +43,11 @@
             border-radius: 50%;
             box-shadow: 5px 10px 10px $al-blue-black;
         }
+    }
+
+    .contactWrapper {
+        width: 60%;
+        padding-top: calc($spacing * 8);
     }
 }
 
@@ -107,10 +92,11 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .aboutMeWrapper {
         display: flex;
         flex-direction: column;
+        width: 90% !important;
 
         p {
             width: 100%;
@@ -118,20 +104,6 @@
     }
 
     .contactWrapper {
-        margin: auto;
-        width: 50%;
+        width: 90% !important;
     }
 }
-
-//@media (prefers-color-scheme: dark) {
-//    .card,
-//    .footer {
-//        border-color: #222;
-//    }
-//    .code {
-//        background: #111;
-//    }
-//    .logo img {
-//        filter: invert(1);
-//    }
-//}

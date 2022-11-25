@@ -6,6 +6,7 @@ import Article from "../components/Article";
 import { DoubleUpArrow, DoubleDownArrow, Clipboard, ClipboardCheck } from "../components/icons";
 
 import styles from "../styles/Home.module.scss";
+import EmailForm from "../components/EmailForm";
 
 export default function Home() {
     const [showCopied, setShowCopied] = useState(false);
@@ -85,50 +86,32 @@ export default function Home() {
                 </div>
             </div>
             <div id="contact" className={styles.section}>
-                <div>
+                <div className={styles.contactWrapper}>
                     <h2>Contact Me</h2>
                     <br />
-                    <div className={styles.contactWrapper}>
-                        Email me to talk about contracting and building your next web application
-                        at&nbsp;
-                        <button
-                            className={`${styles.emailButton} ${
-                                showCopied ? styles.copiedText : ""
-                            }`}
-                            onClick={emailOnClick}
-                        >
-                            <u>
-                                <i>
-                                    alex@aldevelop.com
-                                    {showCopied && <ClipboardCheck />}
-                                    {!showCopied && <Clipboard />}
-                                </i>
-                            </u>
-                        </button>
-                        <br />
-                        <br />
-                        You can also find me on&nbsp;
-                        <Link
-                            className={styles.textLink}
-                            href="https://github.com/alex-laycalvert"
-                            target="#blank"
-                        >
-                            <u>
-                                <i>GitHub</i>
-                            </u>
-                        </Link>
-                        &nbsp; and&nbsp;
-                        <Link
-                            className={styles.textLink}
-                            href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
-                            target="#blank"
-                        >
-                            <u>
-                                <i>LinkedIn</i>
-                            </u>
-                        </Link>
-                        .
-                    </div>
+                    <EmailForm />
+                    <br />
+                    You can also find me on&nbsp;
+                    <Link
+                        className={styles.textLink}
+                        href="https://github.com/alex-laycalvert"
+                        target="#blank"
+                    >
+                        <u>
+                            <i>GitHub</i>
+                        </u>
+                    </Link>
+                    &nbsp; and&nbsp;
+                    <Link
+                        className={styles.textLink}
+                        href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
+                        target="#blank"
+                    >
+                        <u>
+                            <i>LinkedIn</i>
+                        </u>
+                    </Link>
+                    .
                     <br />
                     <br />
                     <Link className={styles.textLink} href="#home">
