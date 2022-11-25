@@ -14,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     name="keywords"
                     content="Dev, Development, Web, Web Dev, Web App, Application, Alex Lay-Calvert, Alex, Alexander, Node, Javascript, Typescript, Contracting"
                 />
+                <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
