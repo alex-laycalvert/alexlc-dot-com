@@ -6,7 +6,11 @@ export default function Resume() {
     return (
         <Article>
             <div className={styles.container}>
-                <iframe className={styles.resumeFrame} src="/assets/documents/resume.pdf" />
+                <object
+                    className={styles.resumeFrame}
+                    data="/assets/documents/resume.pdf"
+                    type="application/pdf"
+                />
             </div>
         </Article>
     );

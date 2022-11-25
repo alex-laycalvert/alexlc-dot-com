@@ -9,12 +9,7 @@ type NavLink = {
     route: string;
 };
 
-interface Props {
-    showDropdown: boolean;
-    toggleShowDropdown: () => void;
-}
-
-export default function Navbar({ showDropdown, toggleShowDropdown }: Props) {
+export default function Navbar() {
     const pages: NavLink[] = [
         {
             name: "Home",
@@ -30,41 +25,35 @@ export default function Navbar({ showDropdown, toggleShowDropdown }: Props) {
         },
     ];
 
-    const navbarClick = (e: any) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleShowDropdown();
-    };
-
     return (
         <nav className={styles.ALNavbar}>
-            <div className={styles.dropdownLinks}>
-                <button className={styles.dropdownButton} onClick={navbarClick}>
+            <div className={styles.dropdownMenu}>
+                <button className={styles.dropdownButton}>
                     <ThreeLines />
                 </button>
-                {showDropdown && (
-                    <div className={styles.dropdownMenu}>
-                        <ul className={styles.navLinks}>
-                            {pages.map((page) => {
-                                return (
-                                    <li key={uuid()} className={styles.navLink}>
-                                        <Link href={page.route}>{page.name}</Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </div>
-                )}
+                <ul className={styles.dropdownLinks}>
+                    {pages.map((page) => {
+                        return (
+                            <li key={uuid()} className={styles.navLink}>
+                                <Link href={page.route}>{page.name}</Link>
+                            </li>
+                        );
+                    })}
+                </ul>
             </div>
             <ul className={styles.navLinks}>
                 {pages.map((page, i, arr) => {
                     return (
-                        <>
-                            <li key={uuid()} className={styles.navLink}>
-                                <Link href={page.route}>{page.name}</Link>
-                            </li>
-                            {i !== arr.length - 1 && <div key={uuid()} className={styles.dotSeparator}>.</div>}
-                        </>
+                        <li key={uuid()} className={styles.navLinkItem}>
+                            <Link className={styles.navLink} href={page.route}>
+                                {page.name}
+                            </Link>
+                            {i !== arr.length - 1 && (
+                                <div key={uuid()} className={styles.dotSeparator}>
+                                    .
+                                </div>
+                            )}
+                        </li>
                     );
                 })}
             </ul>

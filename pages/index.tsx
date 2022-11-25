@@ -77,9 +77,9 @@ export default function Home() {
                         />
                         <p>
                             I am a Web Developer, U.S. Marine Reservist, and student at University
-                            of South Carolina. I am passionate about software developing and
-                            technology and spend a lot of my freetime working on side projects and
-                            learning as much as I can.
+                            of South Carolina. I am passionate about software development and
+                            technology and spend a lot of my freetime working on open source
+                            projects and learning as much as I can.
                         </p>
                     </div>
                 </div>

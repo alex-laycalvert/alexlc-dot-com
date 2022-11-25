@@ -5,12 +5,7 @@ import Navbar from "../Navbar";
 import styles from "../../styles/Header.module.scss";
 import Link from "next/link";
 
-interface Props {
-    showDropdown: boolean;
-    toggleShowDropdown: () => void;
-}
-
-export default function Header({ showDropdown, toggleShowDropdown }: Props) {
+export default function Header() {
     const typedStrings = ["Developer", "U.S. Marine", "Linux Enthusiast", "Neovim User"];
 
     return (
@@ -43,7 +38,7 @@ export default function Header({ showDropdown, toggleShowDropdown }: Props) {
                 </div>
             </div>
             <div className={`${styles.side} ${styles.right}`}>
-                <Navbar showDropdown={showDropdown} toggleShowDropdown={toggleShowDropdown} />
+                <Navbar />
             </div>
         </header>
     );

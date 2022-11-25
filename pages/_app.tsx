@@ -1,17 +1,10 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { useState } from "react";
 import Header from "../components/Header";
 
 import "../styles/globals.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
-    const [showDropdown, setShowDropdown] = useState(false);
-
-    const toggleShowDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
-
     return (
         <>
             <Head>
@@ -23,12 +16,8 @@ export default function App({ Component, pageProps }: AppProps) {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main
-                onClick={() => {
-                    setShowDropdown(false);
-                }}
-            >
-                <Header showDropdown={showDropdown} toggleShowDropdown={toggleShowDropdown} />
+            <main>
+                <Header />
                 <Component {...pageProps} />
             </main>
         </>
