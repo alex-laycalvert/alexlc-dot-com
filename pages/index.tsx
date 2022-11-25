@@ -47,7 +47,7 @@ export default function Home() {
     }, [scrollYProgress]);
 
     const emailOnClick = () => {
-        navigator.clipboard.writeText("alex.laycalvert@gmail.com");
+        navigator.clipboard.writeText("alex@aldevelop.com");
         setShowCopied(true);
     };
 
@@ -99,7 +99,7 @@ export default function Home() {
                         >
                             <u>
                                 <i>
-                                    alex.laycalvert@gmail.com
+                                    alex@aldevelop.com
                                     {showCopied && <ClipboardCheck />}
                                     {!showCopied && <Clipboard />}
                                 </i>
