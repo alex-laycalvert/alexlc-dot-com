@@ -26,12 +26,15 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
+      
+      - name: Compress artifact
+        run: zip -r aldevelop.zip pages/ public/ styles/ components/ node_modules/ .next/ .eslintrc.json .gitignore .prettierrc README.md next.config.js package.json package-lock.json tsconfig.json
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: ./aldevelop.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -45,6 +48,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
+          
+      - name: Decompress artifact
+        run:
+          unzip ./aldevelop.zip
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
