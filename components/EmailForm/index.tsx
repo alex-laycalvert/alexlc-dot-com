@@ -27,10 +27,7 @@ export default function EmailForm() {
         setSending(true);
         try {
             e.preventDefault();
-            let url = process.env.API_URL || "http://localhost:";
-            url += process.env.PORT || 3000;
-            url += "/api/email";
-            const response = await fetch(url, {
+            const response = await fetch("/api/email", {
                 method: "post",
                 body: JSON.stringify(emailData),
                 headers: {
