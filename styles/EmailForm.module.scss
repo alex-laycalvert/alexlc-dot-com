@@ -1,0 +1,185 @@
+@import "./variables";
+
+.emailFormWrapper {
+    width: 100%;
+    padding: $spacing;
+    border: 1px solid $al-blue-black;
+    box-shadow: 2px 5px 5px $al-blue-black;
+    border-radius: 10px;
+}
+
+.emailForm {
+    width: 100%;
+}
+
+.inputWrapper {
+    text-align: left;
+    padding: calc($spacing / 2);
+
+    input,
+    textarea {
+        background: $al-blue-gray;
+        color: $al-light-green;
+        border: 1px solid $al-light-green;
+        border-radius: 10px;
+        padding: $spacing;
+    }
+
+    label {
+        width: 100%;
+        font-size: 1.1rem;
+        font-weight: 300;
+    }
+
+    input {
+        height: 2rem;
+        width: 100%;
+        margin-top: calc($spacing / 2);
+    }
+
+    textarea {
+        width: 100%;
+        margin-top: calc($spacing / 2);
+        height: 6rem;
+    }
+}
+
+.buttonWrapper {
+    width: 100%;
+    padding: $spacing calc($spacing / 2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .sendEmailButton,
+    .resetFormButton {
+        all: unset;
+        width: 45%;
+        border-radius: 10px;
+        padding: calc($spacing / 2);
+        font-weight: 300;
+        transition: all 0.2s ease;
+    }
+
+    .sendEmailButton {
+        border: 1px solid $al-light-green;
+        color: $al-light-green;
+
+        &:hover {
+            background: $al-light-green;
+            color: $al-blue-gray;
+            border: 1px solid $al-blue-black;
+            box-shadow: 2px 5px 5px $al-blue-black;
+        }
+    }
+
+    .resetFormButton {
+        border: 1px solid $al-orange;
+        color: $al-orange;
+
+        &:hover {
+            background: $al-orange;
+            color: $al-blue-gray;
+            border: 1px solid $al-blue-black;
+            box-shadow: 2px 5px 5px $al-blue-black;
+        }
+    }
+
+    .disabledButton {
+        color: $al-blue-gray;
+        border: 1px solid $al-blue-gray;
+
+        &:hover {
+            scale: 1;
+            color: $al-blue-gray;
+            border: 1px solid $al-blue-gray;
+            background: none;
+            box-shadow: none;
+        }
+    }
+}
+
+.emailNotification,
+.emailErrorNotification {
+    position: fixed;
+    z-index: 1;
+    background: $al-blue-gray;
+    padding: $spacing;
+    border-radius: 15px;
+    top: calc(15vh + $spacing);
+    right: $spacing;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation-name: emailNotification;
+    animation-duration: 5s;
+}
+
+.closeNotificationButton {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+        font-size: 1.25rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+            scale: 1.1;
+        }
+    }
+}
+
+.emailNotification {
+    width: 225px;
+    height: 50px;
+    color: $al-light-green;
+    border: 1px solid $al-light-green;
+
+    svg:hover {
+        color: $al-orange;
+    }
+}
+
+.emailErrorNotification {
+    width: 275px;
+    height: 75px;
+    color: $al-orange;
+    border: 1px solid $al-orange;
+
+    .notificationEmailLink {
+        all: unset;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: $al-light-green;
+        }
+    }
+
+    svg:hover {
+        color: $al-light-green;
+    }
+}
+
+.emailErrorText {
+    svg {
+        font-size: 1.25rem;
+        translate: 0 0.3rem;
+    }
+}
+
+@keyframes emailNotification {
+    from {
+        right: calc(-200px - $spacing);
+    }
+    10% {
+        right: $spacing;
+    }
+    90% {
+        right: $spacing;
+    }
+    to {
+        right: calc(-200px - $spacing);
+    }
+}
