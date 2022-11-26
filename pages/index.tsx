@@ -87,9 +87,12 @@ export default function Home() {
             </div>
             <div id="contact" className={styles.section}>
                 <div className={styles.contactWrapper}>
+                    <br />
                     <h2>Contact Me</h2>
                     <br />
                     <EmailForm />
+                    <br />
+                    I typically respond within 24 hours. Check your spam/junk folder if you did not receive a reply.
                     <br />
                     You can also find me on&nbsp;
                     <Link
