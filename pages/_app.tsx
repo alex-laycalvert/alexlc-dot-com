@@ -1,26 +1,26 @@
 import type { AppProps } from "next/app";
-import Head from "next/head";
-import Header from "../components/Header";
+import { Roboto_Flex } from '@next/font/google'
+import Layout from './layout'
 
 import "../styles/globals.scss";
+
+const RobotoFlex = Roboto_Flex({
+    weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    style: ['normal'],
+    subsets: ['latin']
+})
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
-            <Head>
-                <title>AL Development</title>
-                <meta name="description" content="AL Development - Alex L-C" />
-                <meta
-                    name="keywords"
-                    content="AL Development, AL Develop, aldevelop.com, aldevelopment, aldevelop, Alex LC, Alex, L-C, Alexander Lay-Calvert, Alexander Laycalvert, Alex Laycalvert, Dev, Development, Web, Web Dev, Web App, Application, Alex Lay-Calvert, Alex, Alexander, Node, Javascript, Typescript, Contracting"
-                />
-                <link rel="shortcut icon" href="/favicon.ico" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <main>
-                <Header />
+            <style jsx global>{`
+                html {
+                    font-family: ${RobotoFlex.style.fontFamily}
+                }
+            `}</style>
+            <Layout>
                 <Component {...pageProps} />
-            </main>
+            </Layout>
         </>
     );
 }

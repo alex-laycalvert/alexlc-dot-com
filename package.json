@@ -10,6 +10,7 @@
     "test": "echo \"No Tests Present\""
   },
   "dependencies": {
+    "@next/font": "^13.0.5",
     "@types/node": "18.11.9",
     "@types/nodemailer": "^6.4.6",
     "@types/react": "18.0.25",

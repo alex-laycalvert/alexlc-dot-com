@@ -1,62 +1,56 @@
-import Link from "next/link";
-import { ThreeLines } from "../icons";
+import { useState } from "react";
 import { v4 as uuid } from "uuid";
+import * as icons from "../icons";
 
 import styles from "../../styles/Navbar.module.scss";
 
-type NavLink = {
-    name: string;
-    route: string;
-};
-
 export default function Navbar() {
-    const pages: NavLink[] = [
+    const [expanded, setExpanded] = useState(false);
+
+    const navItems = [
         {
-            name: "Home",
-            route: "/",
+            text: "Home",
+            path: "/",
+            icon: icons.Home,
         },
         {
-            name: "Clients",
-            route: "/clients",
+            text: "Clients",
+            path: "/clients",
+            icon: icons.Users,
         },
         {
-            name: "Resume",
-            route: "/resume",
+            text: "Resume",
+            path: "/resume",
+            icon: icons.Resume,
         },
     ];
 
+    const onNavIconClick = () => {
+        setExpanded(!expanded);
+    };
+
     return (
-        <nav className={styles.ALNavbar}>
-            <div className={styles.dropdownMenu}>
-                <button className={styles.dropdownButton}>
-                    <ThreeLines />
-                </button>
-                <ul className={styles.dropdownLinks}>
-                    {pages.map((page) => {
-                        return (
-                            <li key={uuid()} className={styles.navLink}>
-                                <Link href={page.route}>{page.name}</Link>
-                            </li>
-                        );
-                    })}
-                </ul>
+        <nav className={`${styles.nav} ${expanded ? styles.expanded : ""}`}>
+            <button className={styles.navIcon} onClick={onNavIconClick}>
+                <icons.ThreeLines />
+            </button>
+            {!expanded && <div className={styles.navLockedIcon}>
+                <icons.UnlockThreeLines />
+            </div>}
+            {expanded && <div className={styles.navLockedIcon}>
+                <icons.LockThreeLines />
+            </div>}
+            <hr className={styles.navDivider} />
+            <div className={styles.navContent}>
+                {navItems.map((item) => (
+                    <div key={uuid()} className={styles.navItem}>
+                        <div className={styles.navItemIcon}>
+                            <item.icon />
+                        </div>
+                        <div className={styles.navItemText}>{item.text}</div>
+                    </div>
+                ))}
             </div>
-            <ul className={styles.navLinks}>
-                {pages.map((page, i, arr) => {
-                    return (
-                        <li key={uuid()} className={styles.navLinkItem}>
-                            <Link className={styles.navLink} href={page.route}>
-                                {page.name}
-                            </Link>
-                            {i !== arr.length - 1 && (
-                                <div key={uuid()} className={styles.dotSeparator}>
-                                    .
-                                </div>
-                            )}
-                        </li>
-                    );
-                })}
-            </ul>
         </nav>
     );
 }

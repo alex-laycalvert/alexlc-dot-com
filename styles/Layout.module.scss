@@ -1,0 +1,38 @@
+@import "./variables";
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background: white;
+    padding: $outer-spacing;
+}
+
+.pageWrapper {
+    width: 100%;
+    height: 100%;
+    background: $main-background-gradient;
+    border-radius: 15px;
+    display: flex;
+    overflow: hidden;
+}
+
+.turnPageIcon {
+    position: absolute;
+    bottom: $inner-spacing;
+    right: $inner-spacing;
+    transition: all 0.2s ease;
+
+    svg {
+        color: $color3;
+        width: $icon-size;
+        height: $icon-size;
+    }
+
+    &:hover {
+        scale: 1.1;
+        
+        svg {
+            color: $color4;
+        }
+    }
+}

@@ -1,129 +1,121 @@
 @import "./variables";
 
-.ALNavbar {
-    user-select: none;
+.nav {
+    width: 0;
+    height: 100%;
+    background: red;
+    border-radius: 10px;
+    background: $color5;
+    transition: width 0.3s ease;
 
-    .dropdownMenu {
+    .navIcon {
+        all: unset;
+        position: absolute;
+        margin: $inner-spacing;
+
+        svg {
+            width: $icon-size;
+            height: $icon-size;
+            color: $color3;
+            transition: rotate 0.5s ease-in-out;
+        }
+    }
+
+    .navLockedIcon {
         display: none;
-    }
+        position: absolute;
+        top: $inner-spacing;
+        left: calc(1.25 * $icon-size + $inner-spacing);
 
-    .navLinks {
-        display: flex;
-    }
-
-    .navLinkItem {
-        list-style-type: none;
-        display: flex;
-        margin: 0 $spacing;
-
-        .dotSeparator {
-            margin-left: calc($spacing * 2);
-            color: $al-orange;
+        svg {
+            color: $color4;
+            width: calc($icon-size / 2);
+            height: calc($icon-size / 2);
         }
     }
 
-    .navLink {
-        font-size: 1.5rem;
-        font-weight: 200;
-        transition: scale 0.3s ease;
-        transition: translate 0.3s ease;
+    &:hover,
+    &.expanded {
+        width: calc($icon-size + 2 * $inner-spacing + 8px);
 
-        &::after {
-            content: "";
-            position: absolute;
-            height: 1px;
-            width: 0;
-            background: $al-orange;
-            border-radius: 10px;
-            margin-top: calc(1rem + 15px);
-            margin-left: -100%;
-        }
-
-        &:hover {
-            scale: 1.1;
-            translate: 0 -5px;
-
-            &::after {
-                animation-name: slidingUnderline;
-                animation-duration: 0.3s;
-                width: 100%;
-            }
-        }
-    }
-}
-
-@keyframes slidingUnderline {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 100%;
-    }
-}
-
-@media (max-width: 800px) {
-    .ALNavbar {
-        .dropdownButton {
-            all: unset;
-                border: 1px solid $al-orange;
-                border-radius: 15px;
-                padding: $spacing;
-
+        .navIcon {
             svg {
-                width: 2.5rem;
-                height: 2.5rem;
-                translate: 0 2px;
-                color: $al-orange;
-
-                transition: rotate 0.5s ease;
-            }
-
-            &:hover {
-                opacity: 0.8;
+                color: $color4;
             }
         }
 
-        .dropdownMenu {
-            display: inline-block;
-
-            .dropdownLinks {
-                list-style-type: none;
-                display: none;
-                position: absolute;
-                translate: -100% -82.5%;
-                margin: 0;
-                padding: $spacing;
-
-                .navLink {
-                    font-size: 1rem;
-                    margin: calc($spacing / 4) 0;
-
-                    &::after {
-                        margin-top: calc(1rem + 5px);
-                    }
-                }
-            }
-
-            &:hover {
-                .dropdownButton {
-                    svg {
-                        rotate: 180deg;
-                    }
-                }
-
-                .dropdownLinks {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    border: 1px solid $al-orange;
-                    border-radius: 15px;
-                }
-            }
+        .navLockedIcon {
+            display: initial;
         }
 
-        .navLinks {
-            display: none;
+        .navDivider {
+            display: flex;
+            margin-top: calc($icon-size + 2 * $inner-spacing);
+        }
+
+        .navContent {
+            display: flex;
         }
     }
+
+    &.expanded .navIcon {
+        //border: 1px solid $color4;
+        //border-radius: 25%;
+    }
+
+    &:not(.expanded):hover {
+        .navIcon {
+            svg {
+                rotate: 180deg;
+            }
+        }
+    }
+}
+
+.navContent {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navDivider {
+    display: none;
+    border: 1px solid $color3;
+}
+
+.navItem {
+    display: flex;
+    transition: all 0.2s ease;
+    margin: $inner-spacing 0;
+
+    &:hover {
+        scale: 1.1;
+
+        .navItemIcon svg {
+            color: $color4;
+        }
+
+        .navItemText {
+            width: 100px;
+        }
+    }
+}
+
+.navItemIcon {
+    svg {
+        width: $icon-size;
+        height: $icon-size;
+        color: $color3;
+    }
+}
+
+.navItemText {
+    position: absolute;
+    overflow: hidden;
+    width: 0;
+    color: $color4;
+    margin-left: 4rem;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    transition: all 0.5s ease;
 }

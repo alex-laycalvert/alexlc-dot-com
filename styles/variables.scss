@@ -1,10 +1,12 @@
 // Spacing/Padding/Margin
-$spacing: 10px;
-$partial-border-spacing: 20px;
-$partial-border-radius: 10px;
+$outer-spacing: 15px;
+$inner-spacing: 25px;
+$icon-size: 50px;
 
 // Colors
-$al-orange: #eb834a;
-$al-blue-black: #040111;
-$al-blue-gray: #161e3e;
-$al-light-green: #b2d6c0;
+$color1: #040111;
+$color2: #161e3e;
+$color3: #b2d6c0;
+$color4: #eb834a;
+$color5: #080919;
+$main-background-gradient: linear-gradient(135deg, $color2 0%, $color1 100%);
