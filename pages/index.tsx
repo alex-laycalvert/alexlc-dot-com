@@ -1,60 +1,32 @@
 import Book from "../components/Book";
 import Page from "../components/Book/Page";
-//import Typewriter from "typewriter-effect";
-//
-//import styles from "../styles/Home.module.scss";
+import Home from "../components/Home";
+import Clients from "../components/Clients";
+import Resume from "../components/Resume";
+import Contact from "../components/Contact";
 
-export default function Home() {
-    //const typedStrings = ["Developer", "U.S. Marine", "Linux Enthusiast", "Neovim User"];
-
+export default function Main() {
     return (
-        <Book>
-            <Page backgroundColor="#7EBBE0" foregroundColor="#003844">
-                <h1>Hello, World!</h1>
+        <Book pages={["Home", "Clients", "Resume", "Contact"]}>
+            <Page
+                name="Home"
+                backgroundColor="linear-gradient(135deg, #161e3e 0%, #040111 100%)"
+                foregroundColor="#b2d6c0"
+                navBackgroundColor="#090919"
+                navForegroundColor="#b2d6c0"
+                dimOnNavOpen
+            >
+                <Home />
             </Page>
-            <Page backgroundColor="#ED6A5A" foregroundColor="#003844">
-                <h1>Maybe, World?</h1>
+            <Page name="Clients" backgroundColor="#ED6A5A" foregroundColor="#003844">
+                <Clients />
             </Page>
-            <Page backgroundColor="#000000" foregroundColor="#FFFFFF">
-                <h1>Goodbye, World!</h1>
+            <Page name="Resume" backgroundColor="#000000" foregroundColor="#FFFFFF">
+                <Resume />
+            </Page>
+            <Page name="Contact" backgroundColor="#ED6A5A" foregroundColor="#003844">
+                <Contact />
             </Page>
         </Book>
     );
 }
-
-/*
- *
-    return (
-        <div className={styles.container}>
-            <div className={styles.headerContainer}>
-                <h1 className={styles.nameHeader}>
-                    <div className={styles.typewriter}>
-                        <Typewriter
-                            options={{
-                                loop: true,
-                            }}
-                            onInit={(typewriter) => {
-                                typewriter
-                                    .changeDelay(40)
-                                    .changeDeleteSpeed(30)
-                                    .typeString("Hi, I'm Alex")
-                                    .pauseFor(2000)
-                                    .deleteChars(4)
-                                    .pauseFor(500)
-                                    .typeString("a ");
-                                typedStrings.forEach((str) => {
-                                    typewriter
-                                        .typeString(str)
-                                        .pauseFor(1200)
-                                        .deleteChars(str.length)
-                                        .pauseFor(500);
-                                });
-                                typewriter.start();
-                            }}
-                        />
-                    </div>
-                </h1>
-            </div>
-        </div>
-    );
-    */

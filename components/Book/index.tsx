@@ -1,13 +1,13 @@
 import { ReactElement, cloneElement, useEffect, useState } from "react";
-//import PageContainer from "./PageContainer";
 
 import styles from "../../styles/Book.module.scss";
 
 interface Props {
     children: ReactElement[] | ReactElement;
+    pages?: string[];
 }
 
-export default function Book({ children }: Props) {
+export default function Book({ children, pages }: Props) {
     const [currentPage, setCurrentPage] = useState<ReactElement>();
     const [currentPageIndex, setCurrentPageIndex] = useState(-1);
 
@@ -52,9 +52,9 @@ export default function Book({ children }: Props) {
     return (
         <div className={styles.book}>
             {cloneElement(currentPage, {
+                pages,
                 nextPage,
                 prevPage,
-                multiplePages: Array.isArray(children) && children.length > 1,
             })}
         </div>
     );
