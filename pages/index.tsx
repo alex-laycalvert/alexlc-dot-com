@@ -8,28 +8,33 @@ export default function Home() {
     return (
         <div className={styles.container}>
             <div className={styles.headerContainer}>
-                <h1 className={styles.nameHeader}>Hi, I&apos;m Alex</h1>
-                <div className={styles.aboutMeWrapper}>
+                <h1 className={styles.nameHeader}>
                     <div className={styles.typewriter}>
                         <Typewriter
                             options={{
                                 loop: true,
                             }}
                             onInit={(typewriter) => {
-                                typewriter.changeDelay(70);
-                                typewriter.changeDeleteSpeed(100);
+                                typewriter
+                                    .changeDelay(40)
+                                    .changeDeleteSpeed(30)
+                                    .typeString("Hi, I'm Alex")
+                                    .pauseFor(2000)
+                                    .deleteChars(4)
+                                    .pauseFor(500)
+                                    .typeString("a ");
                                 typedStrings.forEach((str) => {
                                     typewriter
                                         .typeString(str)
-                                        .pauseFor(900)
-                                        .deleteAll()
-                                        .pauseFor(250);
+                                        .pauseFor(1200)
+                                        .deleteChars(str.length)
+                                        .pauseFor(500);
                                 });
                                 typewriter.start();
                             }}
                         />
                     </div>
-                </div>
+                </h1>
             </div>
         </div>
     );
