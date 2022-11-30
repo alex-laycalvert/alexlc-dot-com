@@ -1,5 +1,6 @@
-import type { PageItem } from "./Nav/Item";
 import { ReactElement, cloneElement, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import type { PageItem } from "./Nav/Item";
 
 import styles from "../../styles/Book.module.scss";
 
@@ -68,13 +69,25 @@ export default function Book({ children, pages }: Props) {
 
     return (
         <div className={styles.book}>
-            {cloneElement(currentPage, {
-                pages,
-                nextPage,
-                prevPage,
-                turnToPage,
-                currentPage: currentPage.props?.name,
-            })}
+            <AnimatePresence initial={false}>
+                <motion.div
+                    key={currentPageIndex}
+                    custom={1}
+                    className={styles.pageAnimationWrapper}
+                    transition={{
+                        x: { type: "spring", stiffness: 300, damping: 30 },
+                        opacity: { duration: 0.2 },
+                    }}
+                >
+                    {cloneElement(currentPage, {
+                        pages,
+                        nextPage,
+                        prevPage,
+                        turnToPage,
+                        currentPage: currentPage.props?.name,
+                    })}
+                </motion.div>
+            </AnimatePresence>
         </div>
     );
 }

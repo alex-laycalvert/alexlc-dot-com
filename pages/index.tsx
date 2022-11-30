@@ -12,10 +12,10 @@ export default function Main() {
             name: "Home",
             icon: <icons.Home />,
         },
-        //{
-        //    name: "Clients",
-        //    icon: <icons.Users />,
-        //},
+        {
+            name: "Clients",
+            icon: <icons.Users />,
+        },
         //{
         //    name: "Projects",
         //    icon: <icons.RotatingGear />,
@@ -47,9 +47,6 @@ export default function Main() {
             </Page>
             <Page name="Clients" {...pageProps}>
                 <Clients />
-            </Page>
-            <Page name="Projects" {...pageProps}>
-                <></>
             </Page>
             <Page name="Resume" {...pageProps}>
                 <Resume />
