@@ -26,7 +26,6 @@ export default function Item({
     selectedColor,
     selectedBackground,
     turnToPage,
-    isCurrentPage,
     expanded,
 }: Props) {
     const ref = useRef<HTMLLIElement>(null);
@@ -94,8 +93,11 @@ export default function Item({
                 {expanded && (
                     <div className={styles.navItemText} style={{ color: itemColor }}>
                         <Typewriter
-                            onInit={(typewriter) => {
-                                typewriter.start().changeDelay(65).typeString(item.name);
+                            options={{
+                                autoStart: true,
+                                strings: [item.name],
+                                delay: 65,
+                                loop: true
                             }}
                         />
                     </div>
