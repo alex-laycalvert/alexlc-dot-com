@@ -10,60 +10,52 @@ export default function Main() {
     const pages = [
         {
             name: "Home",
-            icon: <icons.Home />
+            icon: <icons.Home />,
         },
-        {
-            name: "Clients",
-            icon: <icons.Users />
-        },
-        {
-            name: "Projects",
-            icon: <icons.RotatingGear />,
-        },
+        //{
+        //    name: "Clients",
+        //    icon: <icons.Users />,
+        //},
+        //{
+        //    name: "Projects",
+        //    icon: <icons.RotatingGear />,
+        //},
         {
             name: "Resume",
-            icon: <icons.Resume />
+            icon: <icons.Resume />,
         },
         {
             name: "Contact",
             icon: <icons.Mail />,
-            hoverIcon: <icons.MailOpen />
+            hoverIcon: <icons.MailOpen />,
         },
-    ]
+    ];
+
+    const pageProps = {
+        background: "linear-gradient(135deg, #161e3e 0%, #040111 100%)",
+        color: "#b2d6c0",
+        navBackground: "#090919",
+        navColor: "#b2d6c0",
+        navSelectedColor: "#040111",
+        navSelectedBackground: "#b2d6c0",
+    };
 
     return (
         <Book pages={pages}>
-            <Page
-                name="Home"
-                background="linear-gradient(135deg, #161e3e 0%, #040111 100%)"
-                color="#b2d6c0"
-                navBackground="#090919"
-                navColor="#b2d6c0"
-                navSelectedColor="#040111"
-                navSelectedBackground="#b2d6c0"
-            >
+            <Page name="Home" {...pageProps}>
                 <Home />
             </Page>
-            <Page
-                name="Clients"
-                background="#ed6a5a"
-                color="#003844"
-                navBackground="#003844"
-                navColor="#edb45a"
-                navClosedColor="#003844"
-                navSelectedColor="#003844"
-                navSelectedBackground="#edb45a"
-            >
+            <Page name="Clients" {...pageProps}>
                 <Clients />
             </Page>
-            <Page name="Resume" background="#000000" color="#ffffff">
+            <Page name="Projects" {...pageProps}>
+                <></>
+            </Page>
+            <Page name="Resume" {...pageProps}>
                 <Resume />
             </Page>
-            <Page name="Contact" background="#ed6a5a" color="#003844">
+            <Page name="Contact" {...pageProps}>
                 <Contact />
-            </Page>
-            <Page name="Projects">
-                <></>
             </Page>
         </Book>
     );

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
+import Typewriter from "typewriter-effect";
 
 import styles from "../../../styles/Book.module.scss";
 
@@ -15,6 +16,8 @@ interface Props {
     selectedColor: string;
     selectedBackground: string;
     turnToPage: (name: string) => void;
+    isCurrentPage?: boolean;
+    expanded: boolean;
 }
 
 export default function Item({
@@ -23,6 +26,8 @@ export default function Item({
     selectedColor,
     selectedBackground,
     turnToPage,
+    isCurrentPage,
+    expanded,
 }: Props) {
     const ref = useRef<HTMLLIElement>(null);
     const [icon, setIcon] = useState(item.icon);
@@ -33,7 +38,7 @@ export default function Item({
     const onHover = () => {
         setIcon(item.hoverIcon ?? item.icon);
         setScale(1.1);
-        setBackgroundWidth((ref.current?.clientWidth ?? 0) + 10);
+        setBackgroundWidth(150);
         setItemColor(selectedColor);
     };
 
@@ -86,9 +91,15 @@ export default function Item({
                 <div className={styles.navItemIcon} style={{ color: itemColor }}>
                     {icon}
                 </div>
-                <div className={styles.navItemText} style={{ color: itemColor }}>
-                    {item.name}
-                </div>
+                {expanded && (
+                    <div className={styles.navItemText} style={{ color: itemColor }}>
+                        <Typewriter
+                            onInit={(typewriter) => {
+                                typewriter.start().changeDelay(65).typeString(item.name);
+                            }}
+                        />
+                    </div>
+                )}
             </button>
         </motion.li>
     );

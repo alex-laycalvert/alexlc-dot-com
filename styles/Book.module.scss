@@ -1,11 +1,14 @@
 $outer-spacing: 20px;
 $inner-spacing: 25px;
 $icon-size: 40px;
+$min-nav-width: 100px;
+$max-nav-width: 200px;
 
 .book {
     width: 100%;
     height: 100vh;
     padding: $outer-spacing;
+    display: inline-block;
 
     * {
         margin: 0;
@@ -54,12 +57,19 @@ $icon-size: 40px;
 
 .nav {
     height: 100%;
-    max-width: 200px;
+    width: $min-nav-width;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: width 0.3s ease-out;
+}
+
+.nav.expanded {
+    width: $max-nav-width;
 }
 
 .navIcon {
-    position: absolute;
-    margin: $inner-spacing;
+    margin: $inner-spacing 0;
     width: calc($icon-size + 10px);
     height: calc($icon-size + 10px);
     display: flex;
@@ -75,17 +85,16 @@ $icon-size: 40px;
 .navLockedIcon {
     position: absolute;
     margin-top: calc($inner-spacing - 10px);
-    margin-left: calc($inner-spacing - $icon-size / 2);
+    margin-left: calc(0px - $icon-size * 2);
 
     svg {
-        width: calc($icon-size / 1.5);
-        height: calc($icon-size / 1.5);
+        width: calc($icon-size / 1.25);
+        height: calc($icon-size / 1.25);
     }
 }
 
 .navContent {
     height: 100%;
-    padding-top: calc($inner-spacing * 2 + $icon-size);
 }
 
 .navItemList {
@@ -93,6 +102,7 @@ $icon-size: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
     height: 100%;
 }
 

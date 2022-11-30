@@ -31,7 +31,12 @@ export default function Book({ children, pages }: Props) {
     };
 
     const turnToPage = (name: string) => {
-        if (!pages || pages.length < 1) {
+        if (!pages || pages.length < 1 || !Array.isArray(children)) {
+            return;
+        }
+        const pageIndex = children.findIndex((c) => c.props?.name === name);
+        if (pageIndex) {
+            setCurrentPageIndex(pageIndex);
             return;
         }
         const index = pages.findIndex((p) => p.name === name);
@@ -48,7 +53,7 @@ export default function Book({ children, pages }: Props) {
             return;
         }
         setCurrentPage(children);
-    }, []);
+    }, [children]);
 
     useEffect(() => {
         if (currentPageIndex < 0 || !Array.isArray(children)) {
@@ -68,6 +73,7 @@ export default function Book({ children, pages }: Props) {
                 nextPage,
                 prevPage,
                 turnToPage,
+                currentPage: currentPage.props?.name,
             })}
         </div>
     );

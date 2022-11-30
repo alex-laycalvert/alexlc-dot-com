@@ -18,10 +18,12 @@ interface Props {
     nextPage?: () => void;
     prevPage?: () => void;
     turnToPage?: (name: string) => void;
+    currentPage?: string;
 }
 
 export default function Page({
     children,
+    name,
     background,
     color,
     navBackground,
@@ -33,9 +35,11 @@ export default function Page({
     nextPage,
     prevPage,
     turnToPage,
+    currentPage,
 }: Props) {
     return (
-        <div
+        <article
+            id={name}
             className={styles.page}
             style={{
                 background: background,
@@ -51,6 +55,7 @@ export default function Page({
                     selectedColor={navSelectedColor ?? navColor ?? ""}
                     selectedBackground={navSelectedBackground ?? navBackground ?? ""}
                     turnToPage={turnToPage ?? ((_) => {})}
+                    currentPage={currentPage}
                 />
             )}
             <div className={styles.pageContent}>{children}</div>
@@ -64,6 +69,6 @@ export default function Page({
                     <icons.RightArrow color={color || ""} />
                 </button>
             )}
-        </div>
+        </article>
     );
 }

@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
-import * as icons from "../components/icons";
 
 import styles from "../styles/Layout.module.scss";
 
@@ -22,13 +20,7 @@ export default function Layout({ children }: Props) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-                <div className={styles.pageWrapper}>
-                    <Navbar />
-                    {children}
-                    <div className={styles.turnPageIcon}>
-                        <icons.RightArrow />
-                    </div>
-                </div>
+                <div className={styles.pageWrapper}>{children}</div>
             </main>
         </>
     );
