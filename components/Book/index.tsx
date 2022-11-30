@@ -1,10 +1,11 @@
+import type { PageItem } from "./Nav/Item";
 import { ReactElement, cloneElement, useEffect, useState } from "react";
 
 import styles from "../../styles/Book.module.scss";
 
 interface Props {
     children: ReactElement[] | ReactElement;
-    pages?: string[];
+    pages?: PageItem[];
 }
 
 export default function Book({ children, pages }: Props) {
@@ -27,6 +28,17 @@ export default function Book({ children, pages }: Props) {
             return;
         }
         setCurrentPageIndex((currentPageIndex + 1) % children.length);
+    };
+
+    const turnToPage = (name: string) => {
+        if (!pages || pages.length < 1) {
+            return;
+        }
+        const index = pages.findIndex((p) => p.name === name);
+        if (index < 0) {
+            return;
+        }
+        setCurrentPageIndex(index);
     };
 
     useEffect(() => {
@@ -55,6 +67,7 @@ export default function Book({ children, pages }: Props) {
                 pages,
                 nextPage,
                 prevPage,
+                turnToPage,
             })}
         </div>
     );

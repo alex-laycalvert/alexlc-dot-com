@@ -113,7 +113,7 @@ export function Home({ color }: Props) {
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 24 24"
         >
-            <path fill={color ?? "currentColor"} />
+            <path fill={color ?? "currentColor"} d="M4 21V9l8-6l8 6v12h-6v-7h-4v7Z" />
         </svg>
     );
 }
@@ -199,6 +199,67 @@ export function UnlockThreeLines({ color }: Props) {
                 fill={color ?? "currentColor"}
                 d="M208 80H100V52a28 28 0 0 1 56 0a8 8 0 0 0 16 0a44 44 0 0 0-88 0v28H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16Zm-24 112H72a8 8 0 0 1 0-16h112a8 8 0 0 1 0 16Zm0-32H72a8 8 0 0 1 0-16h112a8 8 0 0 1 0 16Zm0-32H72a8 8 0 0 1 0-16h112a8 8 0 0 1 0 16Z"
             />
+        </svg>
+    );
+}
+
+export function Mail({ color }: Props) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 512 512"
+        >
+            <path
+                fill={color ?? "currentColor"}
+                d="M424 80H88a56.06 56.06 0 0 0-56 56v240a56.06 56.06 0 0 0 56 56h336a56.06 56.06 0 0 0 56-56V136a56.06 56.06 0 0 0-56-56Zm-14.18 92.63l-144 112a16 16 0 0 1-19.64 0l-144-112a16 16 0 1 1 19.64-25.26L256 251.73l134.18-104.36a16 16 0 0 1 19.64 25.26Z"
+            />
+        </svg>
+    );
+}
+
+export function MailOpen({ color }: Props) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 512 512"
+        >
+            <path
+                fill={color ?? "currentColor"}
+                d="M448.67 154.45L274.1 68.2a41.1 41.1 0 0 0-36.2 0L63.33 154.45A55.6 55.6 0 0 0 32 204.53v184.61c0 30.88 25.42 56 56.67 56h334.66c31.25 0 56.67-25.12 56.67-56V204.53a55.6 55.6 0 0 0-31.33-50.08ZM252.38 96.82a8.22 8.22 0 0 1 7.24 0L429 180.48l-172 85a8.22 8.22 0 0 1-7.24 0L80.35 181.81Z"
+            />
+        </svg>
+    );
+}
+
+export function RotatingGear({ color }: Props) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24"
+        >
+            <path
+                fill={color ?? "currentColor"}
+                d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5s3.5 1.57 3.5 3.5s-1.57 3.5-3.5 3.5z"
+            >
+                <animateTransform
+                    attributeName="transform"
+                    attributeType="XML"
+                    dur="10s"
+                    from="0 12 12"
+                    repeatCount="indefinite"
+                    to="360 12 12"
+                    type="rotate"
+                />
+            </path>
         </svg>
     );
 }

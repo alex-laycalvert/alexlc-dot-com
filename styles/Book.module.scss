@@ -85,5 +85,55 @@ $icon-size: 40px;
 
 .navContent {
     height: 100%;
-    background: red;
+    padding-top: calc($inner-spacing * 2 + $icon-size);
+}
+
+.navItemList {
+    margin: 0 $inner-spacing;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.navItem {
+    list-style-type: none;
+
+    .navItemButton {
+        all: unset;
+        display: flex;
+        align-items: center;
+    }
+
+    .navItemBackground {
+        position: absolute;
+        translate: -5px;
+        display: flex;
+        z-index: 1;
+
+        .navItemBackgroundBody {
+            height: 100%;
+        }
+
+        .navItemBackgroundTriangle {
+            width: 0;
+            height: 0;
+            translate: -0.5px -0.15px;
+            border: 0px solid transparent;
+            border-radius: 1px;
+        }
+    }
+
+    .navItemIcon {
+        z-index: 2;
+        svg {
+            width: $icon-size;
+            height: $icon-size;
+        }
+    }
+
+    .navItemText {
+        z-index: 2;
+        margin-left: 10px;
+    }
 }

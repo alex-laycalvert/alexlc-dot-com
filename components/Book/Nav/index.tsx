@@ -1,21 +1,34 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import * as icons from "../icons";
+import List from "./List";
+import type { PageItem } from "./Item";
+import * as icons from "../../icons";
 
-import styles from "../../styles/Book.module.scss";
+import styles from "../../../styles/Book.module.scss";
 
 interface Props {
-    pages: string[];
-    backgroundColor?: string;
-    foregroundColor?: string;
-    selectedColor?: string;
+    pages: PageItem[];
+    background: string;
+    color: string;
+    closedColor: string;
+    selectedColor: string;
+    selectedBackground: string;
+    turnToPage: (name: string) => void;
 }
 
-export default function Nav({ pages, backgroundColor, foregroundColor, selectedColor }: Props) {
+export default function Nav({
+    pages,
+    background,
+    color,
+    selectedColor,
+    selectedBackground,
+    closedColor,
+    turnToPage,
+}: Props) {
     const [expanded, setExpanded] = useState(false);
     const [locked, setLocked] = useState(false);
     const [iconRotate, setIconRotate] = useState(0);
-    const [width, setWidth] = useState(0);
+    const [width, setWidth] = useState<number | "auto">(0);
 
     const onHover = () => {
         if (locked) {
@@ -39,8 +52,8 @@ export default function Nav({ pages, backgroundColor, foregroundColor, selectedC
     useEffect(() => {
         setIconRotate(Math.abs(iconRotate - 180));
         if (expanded) {
-            setWidth(200);
-            return
+            setWidth("auto");
+            return;
         }
         setWidth(0);
     }, [expanded]);
@@ -55,24 +68,34 @@ export default function Nav({ pages, backgroundColor, foregroundColor, selectedC
                     rotate: iconRotate,
                 }}
             >
-                <icons.ThreeLines color={foregroundColor} />
+                <icons.ThreeLines color={expanded ? color : closedColor} />
             </motion.div>
             {expanded && (
                 <div className={styles.navLockedIcon}>
-                    {locked && <icons.LockThreeLines color={foregroundColor} />}
-                    {!locked && <icons.UnlockThreeLines color={foregroundColor} />}
+                    {locked && <icons.LockThreeLines color={color} />}
+                    {!locked && <icons.UnlockThreeLines color={color} />}
                 </div>
             )}
             <motion.div
                 className={styles.navContent}
                 style={{
-                    background: backgroundColor,
-                    color: foregroundColor,
+                    background,
+                    color,
                 }}
                 animate={{
                     width,
                 }}
-            ></motion.div>
+            >
+                {expanded && (
+                    <List
+                        pages={pages}
+                        color={color}
+                        selectedColor={selectedColor}
+                        selectedBackground={selectedBackground}
+                        turnToPage={turnToPage}
+                    />
+                )}
+            </motion.div>
         </nav>
     );
 }
