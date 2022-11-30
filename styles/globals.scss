@@ -4,10 +4,8 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: "Roboto", sans-serif;
-    color: $al-light-green;
-    background: black;
-    height: 100vh;
+    background: white;
+    font-family: "Raleway", sans-serif;
     -ms-overflow-style: none;
 }
 
@@ -19,16 +17,3 @@ a {
 * {
     box-sizing: border-box;
 }
-
-main {
-}
-
-//@media (prefers-color-scheme: dark) {
-//    html {
-//        color-scheme: dark;
-//    }
-//    body {
-//        color: white;
-//        background: black;
-//    }
-//}

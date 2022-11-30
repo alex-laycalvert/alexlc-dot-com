@@ -1,137 +1,62 @@
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useScroll } from "framer-motion";
-import Article from "../components/Article";
-import { DoubleUpArrow, DoubleDownArrow, Clipboard, ClipboardCheck } from "../components/icons";
+import Book from "../components/Book";
+import Page from "../components/Book/Page";
+import Home from "../components/Home";
+import Clients from "../components/Clients";
+import Resume from "../components/Resume";
+import Contact from "../components/Contact";
+import * as icons from "../components/icons";
 
-import styles from "../styles/Home.module.scss";
-import EmailForm from "../components/EmailForm";
+export default function Main() {
+    const pages = [
+        {
+            name: "Home",
+            icon: <icons.Home />,
+        },
+        //{
+        //    name: "Clients",
+        //    icon: <icons.Users />,
+        //},
+        //{
+        //    name: "Projects",
+        //    icon: <icons.RotatingGear />,
+        //},
+        {
+            name: "Resume",
+            icon: <icons.Resume />,
+        },
+        {
+            name: "Contact",
+            icon: <icons.Mail />,
+            hoverIcon: <icons.MailOpen />,
+        },
+    ];
 
-export default function Home() {
-    const [showCopied, setShowCopied] = useState(false);
-    const [scrollDownOpacity, setScrollDownOpacity] = useState(1);
-    const [scrollUpOpacity, setScrollUpOpacity] = useState(0);
-
-    const { scrollYProgress } = useScroll();
-
-    useEffect(() => {
-        if (!showCopied) {
-            return;
-        }
-        setTimeout(() => {
-            setShowCopied(false);
-        }, 2500);
-    }, [showCopied]);
-
-    useEffect(() => {
-        scrollYProgress.onChange((latest) => {
-            setScrollUpOpacity(0);
-            setScrollDownOpacity(0);
-            if (latest <= 0.1) {
-                setScrollDownOpacity(0.5);
-                return;
-            }
-            if (latest <= 0.05) {
-                setScrollDownOpacity(1);
-                return;
-            }
-            if (latest >= 0.9) {
-                setScrollUpOpacity(0.5);
-                return;
-            }
-            if (latest >= 0.95) {
-                setScrollUpOpacity(1);
-                return;
-            }
-        });
-    }, [scrollYProgress]);
-
-    const emailOnClick = () => {
-        navigator.clipboard.writeText("alex@aldevelop.com");
-        setShowCopied(true);
+    const pageProps = {
+        background: "linear-gradient(135deg, #161e3e 0%, #040111 100%)",
+        color: "#b2d6c0",
+        navBackground: "#090919",
+        navColor: "#b2d6c0",
+        navSelectedColor: "#040111",
+        navSelectedBackground: "#b2d6c0",
     };
 
     return (
-        <Article scrollYProgress={scrollYProgress} useScrollProgress>
-            <div id="home" className={styles.section}>
-                <div>
-                    <h2>Hi, I&apos;m Alex</h2>
-                    <br />
-                    <Link className={styles.textLink} href="#contact">
-                        <u>
-                            <i>Contact Me</i>
-                        </u>
-                    </Link>
-                </div>
-            </div>
-            <div id="about" className={styles.section}>
-                <div>
-                    <h2>About Me</h2>
-                    <div className={styles.aboutMeWrapper}>
-                        <Image
-                            className={styles.headshot}
-                            src="/assets/images/headshot.jpg"
-                            alt="Alex L-C Headshot"
-                            width={150}
-                            height={150}
-                        />
-                        <p>
-                            I am a Web Developer, U.S. Marine Reservist, and student at University
-                            of South Carolina. I am passionate about software development and
-                            technology and spend a lot of my freetime working on open source
-                            projects and learning as much as I can.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div id="contact" className={styles.section}>
-                <div className={styles.contactWrapper}>
-                    <br />
-                    <h2>Contact Me</h2>
-                    <br />
-                    <EmailForm />
-                    <br />
-                    I typically respond within 24 hours. Check your spam/junk folder if you did not receive a reply.
-                    <br />
-                    You can also find me on&nbsp;
-                    <Link
-                        className={styles.textLink}
-                        href="https://github.com/alex-laycalvert"
-                        target="#blank"
-                    >
-                        <u>
-                            <i>GitHub</i>
-                        </u>
-                    </Link>
-                    &nbsp; and&nbsp;
-                    <Link
-                        className={styles.textLink}
-                        href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
-                        target="#blank"
-                    >
-                        <u>
-                            <i>LinkedIn</i>
-                        </u>
-                    </Link>
-                    .
-                    <br />
-                    <br />
-                    <Link className={styles.textLink} href="#home">
-                        <u>
-                            <i>Back to Top</i>
-                        </u>
-                    </Link>
-                </div>
-            </div>
-            <div className={styles.scrollUp} style={{ opacity: scrollUpOpacity }}>
-                <DoubleUpArrow />
-                Scroll Up <DoubleUpArrow />
-            </div>
-            <div className={styles.scrollDown} style={{ opacity: scrollDownOpacity }}>
-                <DoubleDownArrow />
-                Scroll Down <DoubleDownArrow />
-            </div>
-        </Article>
+        <Book pages={pages}>
+            <Page name="Home" {...pageProps}>
+                <Home />
+            </Page>
+            <Page name="Clients" {...pageProps}>
+                <Clients />
+            </Page>
+            <Page name="Projects" {...pageProps}>
+                <></>
+            </Page>
+            <Page name="Resume" {...pageProps}>
+                <Resume />
+            </Page>
+            <Page name="Contact" {...pageProps}>
+                <Contact />
+            </Page>
+        </Book>
     );
 }

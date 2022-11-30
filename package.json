@@ -10,8 +10,10 @@
     "test": "echo \"No Tests Present\""
   },
   "dependencies": {
+    "@next/font": "^13.0.3",
     "@types/node": "18.11.9",
     "@types/nodemailer": "^6.4.6",
+    "@types/pdf-parse": "^1.1.1",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@types/uuid": "^8.3.4",
@@ -21,8 +23,10 @@
     "next": "13.0.3",
     "next-connect": "^0.13.0",
     "nodemailer": "^6.8.0",
+    "pdf-parse": "^1.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "resume-parser": "^1.1.0",
     "sass": "^1.56.1",
     "sharp": "^0.31.2",
     "typescript": "4.9.3",

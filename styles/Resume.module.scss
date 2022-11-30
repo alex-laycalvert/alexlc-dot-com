@@ -1,10 +1,59 @@
 .container {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.resumeFrame {
-    padding-top: 15vh;
-    height: 100%;
+.buttonWrapper {
     width: 100%;
+}
+
+.buttonLink {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.imageContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.resumeImage {
+    height: 80%;
+    width: auto;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+    .imageContainer {
+        display: block;
+
+
+        .resumeImage {
+            width: 80%;
+            height: auto;
+            margin: 20px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .imageContainer {
+        display: block;
+
+        .resumeImage {
+            width: 80%;
+            height: auto;
+            margin: 20px;
+        }
+    }
 }
