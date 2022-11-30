@@ -1,17 +1,66 @@
 import { ReactElement, cloneElement, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import type { PageItem } from "./Nav/Item";
+import Nav from "./Nav";
+import * as icons from "../icons";
 
 import styles from "../../styles/Book.module.scss";
+
+const xFactor = 1000;
+
+const variants = {
+    enter: (direction: number) => {
+        return {
+            x: direction > 0 ? xFactor : -xFactor,
+            opacity: 0,
+        };
+    },
+    center: {
+        zIndex: 1,
+        x: 0,
+        opacity: 1,
+    },
+    exit: (direction: number) => {
+        return {
+            zIndex: 0,
+            x: direction < 0 ? xFactor : -xFactor,
+            opacity: 0,
+        };
+    },
+};
+
+const swipeConfidenceThreshold = 1000;
+
+const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+};
 
 interface Props {
     children: ReactElement[] | ReactElement;
     pages?: PageItem[];
+    background?: string;
+    color?: string;
+    navBackground?: string;
+    navColor?: string;
+    navClosedColor?: string;
+    navSelectedColor?: string;
+    navSelectedBackground?: string;
 }
 
-export default function Book({ children, pages }: Props) {
+export default function Book({
+    children,
+    pages,
+    background,
+    color,
+    navBackground,
+    navColor,
+    navClosedColor,
+    navSelectedColor,
+    navSelectedBackground,
+}: Props) {
     const [currentPage, setCurrentPage] = useState<ReactElement>();
     const [currentPageIndex, setCurrentPageIndex] = useState(-1);
+    const [direction, setDirection] = useState(0);
 
     const prevPage = () => {
         if (!Array.isArray(children)) {
@@ -21,6 +70,7 @@ export default function Book({ children, pages }: Props) {
             setCurrentPageIndex(children.length - 1);
             return;
         }
+        setDirection(-1);
         setCurrentPageIndex(currentPageIndex - 1);
     };
 
@@ -28,6 +78,7 @@ export default function Book({ children, pages }: Props) {
         if (!Array.isArray(children)) {
             return;
         }
+        setDirection(1);
         setCurrentPageIndex((currentPageIndex + 1) % children.length);
     };
 
@@ -37,12 +88,22 @@ export default function Book({ children, pages }: Props) {
         }
         const pageIndex = children.findIndex((c) => c.props?.name === name);
         if (pageIndex) {
+            if (pageIndex > currentPageIndex) {
+                setDirection(1);
+            } else {
+                setDirection(-1);
+            }
             setCurrentPageIndex(pageIndex);
             return;
         }
         const index = pages.findIndex((p) => p.name === name);
         if (index < 0) {
             return;
+        }
+        if (index > currentPageIndex) {
+            setDirection(1);
+        } else {
+            setDirection(-1);
         }
         setCurrentPageIndex(index);
     };
@@ -69,25 +130,49 @@ export default function Book({ children, pages }: Props) {
 
     return (
         <div className={styles.book}>
-            <AnimatePresence initial={false}>
-                <motion.div
-                    key={currentPageIndex}
-                    custom={1}
-                    className={styles.pageAnimationWrapper}
-                    transition={{
-                        x: { type: "spring", stiffness: 300, damping: 30 },
-                        opacity: { duration: 0.2 },
-                    }}
-                >
+            {pages && pages.length > 1 && (
+                <Nav
+                    pages={pages}
+                    background={navBackground ?? color ?? ""}
+                    color={navColor ?? background ?? ""}
+                    closedColor={navClosedColor ?? navColor ?? ""}
+                    selectedColor={navSelectedColor ?? navColor ?? ""}
+                    selectedBackground={navSelectedBackground ?? navBackground ?? ""}
+                    turnToPage={turnToPage ?? ((_) => {})}
+                    currentPage={currentPage.props.name}
+                />
+            )}
+            <div
+                className={styles.pagesWrapper}
+                style={{
+                    background,
+                }}
+            >
+                <AnimatePresence initial={false} custom={direction}>
                     {cloneElement(currentPage, {
                         pages,
+                        color,
+                        background,
                         nextPage,
                         prevPage,
-                        turnToPage,
-                        currentPage: currentPage.props?.name,
+                        currentPageIndex,
+                        direction,
+                        variants,
+                        swipePower,
+                        swipeConfidenceThreshold,
                     })}
-                </motion.div>
-            </AnimatePresence>
+                </AnimatePresence>
+            </div>
+            {pages && pages.length > 1 && (
+                <button className={styles.prevPageButton} onClick={prevPage}>
+                    <icons.RightArrow color={color || ""} />
+                </button>
+            )}
+            {pages && pages.length > 1 && (
+                <button className={styles.nextPageButton} onClick={nextPage}>
+                    <icons.RightArrow color={color || ""} />
+                </button>
+            )}
         </div>
     );
 }

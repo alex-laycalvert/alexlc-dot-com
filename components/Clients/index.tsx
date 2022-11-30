@@ -33,6 +33,7 @@ export default function Clients() {
             {clients.map((client) => {
                 return (
                     <motion.button
+                        key={client.name}
                         className={styles.client}
                         layoutId={client.name}
                         onClick={() => {

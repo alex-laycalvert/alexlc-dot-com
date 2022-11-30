@@ -1,7 +1,4 @@
-import Nav from "./Nav";
-import type { PageItem } from "./Nav/Item";
-import * as icons from "../icons";
-
+import { motion } from "framer-motion";
 import styles from "../../styles/Book.module.scss";
 
 interface Props {
@@ -9,66 +6,61 @@ interface Props {
     name: string;
     background?: string;
     color?: string;
-    navBackground?: string;
-    navColor?: string;
-    navClosedColor?: string;
-    navSelectedColor?: string;
-    navSelectedBackground?: string;
-    pages?: PageItem[];
     nextPage?: () => void;
     prevPage?: () => void;
-    turnToPage?: (name: string) => void;
-    currentPage?: string;
+    currentPageIndex?: number;
+    direction?: number;
+    variants?: any;
+    swipePower?: (offset: number, velocity: number) => number;
+    swipeConfidenceThreshold?: number;
 }
 
 export default function Page({
     children,
-    name,
     background,
     color,
-    navBackground,
-    navColor,
-    navClosedColor,
-    navSelectedColor,
-    navSelectedBackground,
-    pages,
     nextPage,
     prevPage,
-    turnToPage,
-    currentPage,
+    currentPageIndex,
+    direction,
+    variants,
+    swipePower,
+    swipeConfidenceThreshold,
 }: Props) {
     return (
-        <article
-            id={name}
+        <motion.article
+            key={currentPageIndex}
+            custom={direction}
             className={styles.page}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
             style={{
-                background: background,
-                color: color,
+                color,
+                background,
+            }}
+            transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(_e, { offset, velocity }) => {
+                if (!nextPage || !prevPage || !swipePower || !swipeConfidenceThreshold) {
+                    return;
+                }
+                const swipe = swipePower(offset.x, velocity.x);
+
+                if (swipe < -swipeConfidenceThreshold) {
+                    nextPage();
+                } else if (swipe > swipeConfidenceThreshold) {
+                    prevPage();
+                }
             }}
         >
-            {pages && pages.length > 1 && (
-                <Nav
-                    pages={pages}
-                    background={navBackground ?? color ?? ""}
-                    color={navColor ?? background ?? ""}
-                    closedColor={navClosedColor ?? navColor ?? ""}
-                    selectedColor={navSelectedColor ?? navColor ?? ""}
-                    selectedBackground={navSelectedBackground ?? navBackground ?? ""}
-                    turnToPage={turnToPage ?? ((_) => {})}
-                    currentPage={currentPage}
-                />
-            )}
-            <div className={styles.pageContent}>{children}</div>
-            {pages && pages.length > 1 && (
-                <button className={styles.prevPageButton} onClick={prevPage}>
-                    <icons.RightArrow color={color || ""} />
-                </button>
-            )}
-            {pages && pages.length > 1 && (
-                <button className={styles.nextPageButton} onClick={nextPage}>
-                    <icons.RightArrow color={color || ""} />
-                </button>
-            )}
-        </article>
+            {children}
+        </motion.article>
     );
 }
