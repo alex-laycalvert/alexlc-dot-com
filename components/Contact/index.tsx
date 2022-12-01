@@ -19,7 +19,7 @@ export default function Contact() {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container + ' drag'}>
             <div className={styles.formWrapper}>
                 <h2 className={styles.formTitle}>Contact Me</h2>
                 <Form onSubmit={onSubmit}>

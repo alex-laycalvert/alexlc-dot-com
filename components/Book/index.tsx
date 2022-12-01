@@ -1,5 +1,5 @@
 import { ReactElement, cloneElement, useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, useDragControls } from "framer-motion";
 import type { PageItem } from "./Nav/Item";
 import Nav from "./Nav";
 import * as icons from "../icons";
@@ -37,7 +37,7 @@ const swipePower = (offset: number, velocity: number) => {
 
 interface Props {
     children: ReactElement[] | ReactElement;
-    pages?: PageItem[];
+    pages: PageItem[];
     background?: string;
     color?: string;
     navBackground?: string;
@@ -46,6 +46,7 @@ interface Props {
     navSelectedColor?: string;
     navSelectedBackground?: string;
 }
+
 
 export default function Book({
     children,
@@ -61,6 +62,8 @@ export default function Book({
     const [currentPage, setCurrentPage] = useState<ReactElement>();
     const [currentPageIndex, setCurrentPageIndex] = useState(-1);
     const [direction, setDirection] = useState(0);
+
+    const dragControls = useDragControls();
 
     const prevPage = () => {
         if (!Array.isArray(children)) {
@@ -128,20 +131,19 @@ export default function Book({
         return <></>;
     }
 
+
     return (
         <div className={styles.book}>
-            {pages && pages.length > 1 && (
-                <Nav
-                    pages={pages}
-                    background={navBackground ?? color ?? ""}
-                    color={navColor ?? background ?? ""}
-                    closedColor={navClosedColor ?? navColor ?? ""}
-                    selectedColor={navSelectedColor ?? navColor ?? ""}
-                    selectedBackground={navSelectedBackground ?? navBackground ?? ""}
-                    turnToPage={turnToPage ?? ((_) => {})}
-                    currentPage={currentPage.props.name}
-                />
-            )}
+            <Nav
+                pages={pages}
+                background={navBackground ?? color ?? ""}
+                color={navColor ?? background ?? ""}
+                closedColor={navClosedColor ?? navColor ?? ""}
+                selectedColor={navSelectedColor ?? navColor ?? ""}
+                selectedBackground={navSelectedBackground ?? navBackground ?? ""}
+                turnToPage={turnToPage ?? ((_) => {})}
+                currentPage={currentPage.props.name}
+            />
             <div
                 className={styles.pagesWrapper}
                 style={{
@@ -158,6 +160,7 @@ export default function Book({
                         currentPageIndex,
                         direction,
                         variants,
+                        dragControls,
                         swipePower,
                         swipeConfidenceThreshold,
                     })}

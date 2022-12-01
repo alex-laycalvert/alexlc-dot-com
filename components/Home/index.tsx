@@ -13,7 +13,7 @@ export default function Home() {
     ];
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container + ' drag'}>
             <h1 className={styles.title}>
                 <div className={styles.typewriter}>
                     <Typewriter

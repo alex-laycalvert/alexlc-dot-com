@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { DragControls, motion, useDragControls } from "framer-motion";
 import styles from "../../styles/Book.module.scss";
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
     currentPageIndex?: number;
     direction?: number;
     variants?: any;
+    dragControls?: DragControls;
     swipePower?: (offset: number, velocity: number) => number;
     swipeConfidenceThreshold?: number;
 }
@@ -24,9 +25,11 @@ export default function Page({
     currentPageIndex,
     direction,
     variants,
+    //dragControls,
     swipePower,
     swipeConfidenceThreshold,
 }: Props) {
+    const dragControls = useDragControls();
     return (
         <motion.article
             key={currentPageIndex}
@@ -47,6 +50,13 @@ export default function Page({
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
+            dragControls={dragControls}
+            dragListener={false}
+            onPointerDown={(e: any) => {
+                if (e.target.classList.contains("drag")) {
+                    dragControls.start(e);
+                }
+            }}
             onDragEnd={(_e, { offset, velocity }) => {
                 if (!nextPage || !prevPage || !swipePower || !swipeConfidenceThreshold) {
                     return;

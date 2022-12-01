@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import List from "./List";
 import type { PageItem } from "./Item";
@@ -93,11 +93,3 @@ export default function Nav({
         </nav>
     );
 }
-
-/*
- *
- *
- *
- *
- *
- */
