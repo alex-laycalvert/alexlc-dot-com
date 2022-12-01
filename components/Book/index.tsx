@@ -67,7 +67,7 @@ export default function Book({
             return;
         }
         if (currentPageIndex - 1 < 0) {
-            setCurrentPageIndex(children.length - 1);
+            setCurrentPageIndex(children?.length - 1);
             return;
         }
         setDirection(-1);
@@ -79,7 +79,7 @@ export default function Book({
             return;
         }
         setDirection(1);
-        setCurrentPageIndex((currentPageIndex + 1) % children.length);
+        setCurrentPageIndex((currentPageIndex + 1) % children?.length);
     };
 
     const turnToPage = (name: string) => {

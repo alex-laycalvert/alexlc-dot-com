@@ -12,10 +12,10 @@ export default function Main() {
             name: "Home",
             icon: <icons.Home />,
         },
-        //{
-        //    name: "Clients",
-        //    icon: <icons.Users />,
-        //},
+        {
+            name: "Clients",
+            icon: <icons.Users />,
+        },
         //{
         //    name: "Projects",
         //    icon: <icons.RotatingGear />,
@@ -31,18 +31,23 @@ export default function Main() {
         },
     ];
 
+    const bookProps = {
+        pages,
+        background: "linear-gradient(135deg, #161e3e 0%, #040111 100%)",
+        color: "#b2d6c0",
+        navBackground: "#090919",
+        navColor: "#b2d6c0",
+        navSelectedColor: "#040111",
+        navSelectedBackground: "#b2d6c0",
+    };
+
     return (
-        <Book
-            pages={pages}
-            background="linear-gradient(135deg, #161e3e 0%, #040111 100%)"
-            color="#b2d6c0"
-            navBackground="#090919"
-            navColor="#b2d6c0"
-            navSelectedColor="#040111"
-            navSelectedBackground="#b2d6c0"
-        >
+        <Book {...bookProps}>
             <Page name="Home">
                 <Home />
+            </Page>
+            <Page name="Clients">
+                <Clients clientBackground="#161e3e" />
             </Page>
             <Page name="Resume">
                 <Resume />
