@@ -4,6 +4,7 @@ import Home from "../components/Home";
 import Clients from "../components/Clients";
 import Resume from "../components/Resume";
 import Contact from "../components/Contact";
+import About from "../components/About";
 import * as icons from "../components/icons";
 
 export default function Main() {
@@ -16,10 +17,11 @@ export default function Main() {
             name: "Clients",
             icon: <icons.Users />,
         },
-        //{
-        //    name: "Projects",
-        //    icon: <icons.RotatingGear />,
-        //},
+        {
+            name: "About Me",
+            icon: <icons.User />,
+            hoverIcon: <icons.UserDetail />,
+        },
         {
             name: "Resume",
             icon: <icons.Resume />,
@@ -48,6 +50,9 @@ export default function Main() {
             </Page>
             <Page name="Clients">
                 <Clients clientBackground="#161e3e" />
+            </Page>
+            <Page name="About Me">
+                <About />
             </Page>
             <Page name="Resume">
                 <Resume />

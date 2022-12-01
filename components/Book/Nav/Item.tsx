@@ -94,10 +94,10 @@ export default function Item({
                     <div className={styles.navItemText} style={{ color: itemColor }}>
                         <Typewriter
                             options={{
-                                autoStart: true,
-                                strings: [item.name],
-                                delay: 65,
-                                loop: true
+                                delay: 60
+                            }}
+                            onInit={(typewriter) => {
+                                typewriter.start().typeString(item.name)
                             }}
                         />
                     </div>
