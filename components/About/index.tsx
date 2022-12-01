@@ -33,7 +33,7 @@ export default function About() {
                 </div>
                 <div className={styles.aboutMeFooter}>
                     <i className={styles.aboutMeFooterText}>
-                        I don&apos;t always the answer to every problem, but I ALWAYS find it.
+                        I don&apos;t always have the answer to every problem, but I ALWAYS find it.
                     </i>
                 </div>
             </div>
