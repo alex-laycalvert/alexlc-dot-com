@@ -1,17 +1,139 @@
+@import "./variables";
+
 .container {
     width: 100%;
     height: 100%;
 }
 
+.clients {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.clientsHeader {
+    margin: 20px;
+    font-size: 2.5rem;
+}
+
 .client {
-    all: unset;
-    width: 200px;
-    height: 200px;
-    background: red;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 20px;
+    transition: scale 0.2s ease;
+
+    .clientHeaderWrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .clientName {
+        font-size: 1.25rem;
+        font-weight: 300;
+        margin-left: 10px;
+    }
+
+    .clientLogo {
+        border-radius: 50%;
+    }
+
+    .clientLink {
+        margin-left: auto;
+        margin-right: 10px;
+        font-size: 1.25rem;
+        transition: all 0.2s ease;
+
+        &:after {
+            content: "";
+            position: absolute;
+            background: $color4;
+            height: 1px;
+            width: 0;
+            margin-top: calc(50% + 5px);
+            margin-left: -100%;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+
+        &:hover {
+            scale: 1.1;
+            translate: -1px 0;
+            color: $color4;
+            text-shadow: $small-shadow;
+
+            &:after {
+                width: 100%;
+            }
+        }
+    }
+
+    .clientDivider {
+        margin: 20px 0;
+        border-radius: 1px;
+        border-color: $color3;
+    }
+
+    .clientDesc {
+        font-size: 1.25rem;
+    }
+
+    .closeButton {
+        all: unset;
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+
+        svg {
+            transition: all 0.3s ease-in-out;
+        }
+
+        &:hover {
+            color: $color4;
+            scale: 1.05;
+
+            svg {
+                color: $color4;
+                rotate: 180deg;
+            }
+        }
+    }
+
+    &:not(.selected):hover {
+        scale: 1.03;
+    }
+}
+
+.empty {
+    width: 300px;
+    margin: auto;
+    padding: 30px;
 }
 
 .client.selected {
-    width: 300px;
-    height: 300px;
-    background: blue;
+    position: relative;
+    width: 50%;
+
+    .clientName {
+        font-size: 1.7rem;
+    }
+}
+
+.selectedClientWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

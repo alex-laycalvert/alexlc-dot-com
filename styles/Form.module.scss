@@ -65,7 +65,7 @@
     border: 1px solid $color3;
     color: $color3;
 
-    &:hover {
+    &:not(.disabled):hover {
         background: $color3;
         border: 1px solid $color1;
         color: $color1;
@@ -76,7 +76,7 @@
     border: 1px solid $color4;
     color: $color4;
 
-    &:hover {
+    &:not(.disabled):hover {
         background: $color4;
         border: 1px solid $color4;
         color: $color1;
@@ -86,10 +86,6 @@
 .button.disabled {
     border: 1px solid $color2;
     color: $color2;
-
-    &:hover {
-        scale: 1;
-    }
 }
 
 .buttonText {
