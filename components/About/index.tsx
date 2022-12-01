@@ -4,7 +4,7 @@ import styles from "../../styles/About.module.scss";
 
 export default function About() {
     return (
-        <div className={styles.container}>
+        <div className={styles.container + ' drag'}>
             <div className={styles.aboutMeWrapper}>
                 <h2 className={styles.headerText}>About me</h2>
                 <hr className={styles.aboutMeDivider} />
