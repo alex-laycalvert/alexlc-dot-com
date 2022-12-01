@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ReactElement, cloneElement, useEffect, useState } from "react";
 import { AnimatePresence, useDragControls } from "framer-motion";
 import type { PageItem } from "./Nav/Item";
@@ -45,8 +46,10 @@ interface Props {
     navClosedColor?: string;
     navSelectedColor?: string;
     navSelectedBackground?: string;
+    defaultPage?: string;
+    defaultPageIndex?: number;
+    defaultPath?: string;
 }
-
 
 export default function Book({
     children,
@@ -58,32 +61,17 @@ export default function Book({
     navClosedColor,
     navSelectedColor,
     navSelectedBackground,
+    defaultPage,
+    defaultPageIndex,
+    defaultPath,
 }: Props) {
     const [currentPage, setCurrentPage] = useState<ReactElement>();
     const [currentPageIndex, setCurrentPageIndex] = useState(-1);
     const [direction, setDirection] = useState(0);
+    const [nextPage, setNextPage] = useState('');
+    const [prevPage, setPrevPage] = useState('');
 
     const dragControls = useDragControls();
-
-    const prevPage = () => {
-        if (!Array.isArray(children)) {
-            return;
-        }
-        if (currentPageIndex - 1 < 0) {
-            setCurrentPageIndex(children?.length - 1);
-            return;
-        }
-        setDirection(-1);
-        setCurrentPageIndex(currentPageIndex - 1);
-    };
-
-    const nextPage = () => {
-        if (!Array.isArray(children)) {
-            return;
-        }
-        setDirection(1);
-        setCurrentPageIndex((currentPageIndex + 1) % children?.length);
-    };
 
     const turnToPage = (name: string) => {
         if (!pages || pages.length < 1 || !Array.isArray(children)) {
@@ -111,13 +99,40 @@ export default function Book({
         setCurrentPageIndex(index);
     };
 
-    useEffect(() => {
-        if (Array.isArray(children)) {
-            setCurrentPageIndex(0);
-            setCurrentPage(children[currentPageIndex]);
+    const turnToPath = (path: string) => {
+        if (!pages || pages.length < 1 || !Array.isArray(children)) {
             return;
         }
-        setCurrentPage(children);
+        const index = pages.findIndex((p) => p.path === path);
+        if (index < 0) {
+            return;
+        }
+        if (index > currentPageIndex) {
+            setDirection(1);
+        } else {
+            setDirection(-1);
+        }
+        setCurrentPageIndex(index);
+    };
+
+    useEffect(() => {
+        if (!Array.isArray(children)) {
+            setCurrentPage(children);
+            return;
+        }
+        if (defaultPath) {
+            turnToPath(defaultPath);
+            return;
+        }
+        if (defaultPage) {
+            turnToPage(defaultPage);
+            return;
+        }
+        if (defaultPageIndex) {
+            setCurrentPageIndex(defaultPageIndex);
+            return;
+        }
+        setCurrentPageIndex(0);
     }, [children]);
 
     useEffect(() => {
@@ -125,12 +140,17 @@ export default function Book({
             return;
         }
         setCurrentPage(children[currentPageIndex]);
+        setNextPage(pages[(currentPageIndex + 1) % pages.length].path)
+        let prevPageIndex = currentPageIndex - 1
+        if (prevPageIndex < 0) {
+            prevPageIndex = pages.length - 1
+        }
+        setPrevPage(pages[prevPageIndex].path)
     }, [currentPageIndex]);
 
     if (!currentPage) {
         return <></>;
     }
-
 
     return (
         <div className={styles.book}>
@@ -155,8 +175,6 @@ export default function Book({
                         pages,
                         color,
                         background,
-                        nextPage,
-                        prevPage,
                         currentPageIndex,
                         direction,
                         variants,
@@ -167,14 +185,14 @@ export default function Book({
                 </AnimatePresence>
             </div>
             {pages && pages.length > 1 && (
-                <button className={styles.prevPageButton} onClick={prevPage}>
+                <Link className={styles.prevPageButton} href={prevPage}>
                     <icons.RightArrow color={color || ""} />
-                </button>
+                </Link>
             )}
             {pages && pages.length > 1 && (
-                <button className={styles.nextPageButton} onClick={nextPage}>
+                <Link className={styles.nextPageButton} href={nextPage}>
                     <icons.RightArrow color={color || ""} />
-                </button>
+                </Link>
             )}
         </div>
     );

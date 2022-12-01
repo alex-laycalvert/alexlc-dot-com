@@ -17,6 +17,7 @@ interface Props {
 }
 
 export default function Page({
+    name,
     children,
     background,
     color,
@@ -24,15 +25,15 @@ export default function Page({
     prevPage,
     currentPageIndex,
     direction,
+    dragControls,
     variants,
-    //dragControls,
     swipePower,
     swipeConfidenceThreshold,
 }: Props) {
-    const dragControls = useDragControls();
     return (
         <motion.article
             key={currentPageIndex}
+            id={name}
             custom={direction}
             className={styles.page}
             variants={variants}
@@ -54,7 +55,7 @@ export default function Page({
             dragListener={false}
             onPointerDown={(e: any) => {
                 if (e.target.classList.contains("drag")) {
-                    dragControls.start(e);
+                    dragControls?.start(e);
                 }
             }}
             onDragEnd={(_e, { offset, velocity }) => {

@@ -13,3 +13,15 @@
     font-size: 3rem;
     text-align: center;
 }
+
+@media (max-width: 1000px) {
+    .title {
+        padding-left: 210px;
+    }
+}
+
+@media (max-width: 800px) {
+    .title {
+        padding-left: 0;
+    }
+}

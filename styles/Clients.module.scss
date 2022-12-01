@@ -3,16 +3,26 @@
 .container {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.clientsWrapper {
+    width: 60%;
+    height: 100%;
 }
 
 .clients {
-    margin: 20px;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
 .clientsHeader {
+    width: 100%;
     margin: 20px;
     font-size: 2.5rem;
 }
@@ -139,6 +149,10 @@
 }
 
 @media (max-width: 800px) {
+    .clientsWrapper {
+        width: 90%;
+        height: 70%;
+    }
     .client.selected {
         width: 90%;
     }
