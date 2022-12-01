@@ -37,7 +37,7 @@
 
 @media (max-width: 1200px) {
     .resumeWrapper {
-        width: 90%;
+        padding-left: 50px;
         height: 100%;
     }
 
@@ -55,6 +55,8 @@
 
 @media (max-width: 800px) {
     .resumeWrapper {
+        width: 90%;
+        padding-top: 100px;
         height: 100%;
     }
     

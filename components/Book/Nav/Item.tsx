@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
 
@@ -6,6 +7,7 @@ import styles from "../../../styles/Book.module.scss";
 
 export interface PageItem {
     name: string;
+    path: string;
     icon: React.ReactNode;
     hoverIcon?: React.ReactNode;
 }
@@ -62,7 +64,7 @@ export default function Item({
                 scale,
             }}
         >
-            <button className={styles.navItemButton} onClick={onClick}>
+            <Link className={styles.navItemButton} href={item.path}>
                 <div
                     className={styles.navItemBackground}
                     style={{
@@ -94,15 +96,15 @@ export default function Item({
                     <div className={styles.navItemText} style={{ color: itemColor }}>
                         <Typewriter
                             options={{
-                                delay: 60
+                                delay: 60,
                             }}
                             onInit={(typewriter) => {
-                                typewriter.start().typeString(item.name)
+                                typewriter.start().typeString(item.name);
                             }}
                         />
                     </div>
                 )}
-            </button>
+            </Link>
         </motion.li>
     );
 }

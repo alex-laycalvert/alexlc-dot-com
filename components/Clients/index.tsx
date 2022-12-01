@@ -29,46 +29,48 @@ export default function Clients({ clientBackground }: Props) {
     const [selectedClient, setSelectedClient] = useState<ClientInfo | null>(null);
 
     return (
-        <div className={styles.container + ' drag'}>
-            <h2 className={styles.clientsHeader}>Clients</h2>
-            <div className={styles.clients}>
-                {clients.map((client) => {
-                    if (client.id === selectedClient?.id) {
-                        return <div key={"empty" + client.id} className={styles.empty}></div>;
-                    }
-                    return (
-                        <Client
-                            key={client.id}
-                            client={client}
-                            onClick={(_e) => {
-                                setSelectedClient(client);
+        <div className={styles.container + " drag"}>
+            <div className={styles.clientsWrapper}>
+                <h2 className={styles.clientsHeader}>Clients</h2>
+                <div className={styles.clients}>
+                    {clients.map((client) => {
+                        if (client.id === selectedClient?.id) {
+                            return <div key={"empty" + client.id} className={styles.empty}></div>;
+                        }
+                        return (
+                            <Client
+                                key={client.id}
+                                client={client}
+                                onClick={(_e) => {
+                                    setSelectedClient(client);
+                                }}
+                                selected={false}
+                                background={clientBackground}
+                            />
+                        );
+                    })}
+                </div>
+                <AnimatePresence>
+                    {selectedClient && (
+                        <div
+                            className={styles.selectedClientWrapper}
+                            onClick={(e: any) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setSelectedClient(null);
                             }}
-                            selected={false}
-                            background={clientBackground}
-                        />
-                    );
-                })}
+                        >
+                            <Client
+                                client={selectedClient}
+                                selected={true}
+                                background={clientBackground}
+                                onClick={(e) => e.stopPropagation()}
+                                close={() => setSelectedClient(null)}
+                            />
+                        </div>
+                    )}
+                </AnimatePresence>
             </div>
-            <AnimatePresence>
-                {selectedClient && (
-                    <div
-                        className={styles.selectedClientWrapper}
-                        onClick={(e: any) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setSelectedClient(null);
-                        }}
-                    >
-                        <Client
-                            client={selectedClient}
-                            selected={true}
-                            background={clientBackground}
-                            onClick={(e) => e.stopPropagation()}
-                            close={() => setSelectedClient(null)}
-                        />
-                    </div>
-                )}
-            </AnimatePresence>
         </div>
     );
 }
