@@ -15,6 +15,7 @@ export default function Resume() {
     return (
         <div className={styles.container + " drag"}>
             <div className={styles.resumeWrapper}>
+                <h2 className={styles.resumeHeaderText}>My Resume</h2>
                 <Link
                     className={styles.buttonLink}
                     href="/assets/documents/resume.pdf"
