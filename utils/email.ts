@@ -1,12 +1,15 @@
 import mailer, { SentMessageInfo } from "nodemailer";
 
 interface EmailResponse {
-    info: SentMessageInfo,
-    error: any
+    info: SentMessageInfo;
+    error: any;
 }
 
 const formatBody = (message: EmailData): string => {
-    let text = "Website Contact Form\n\n";
+    let text = "AL Development Website Contact Form\n\n";
+    text += "\n";
+    text += "Thank you for contacting, I will be with you shortly.\n";
+    text += "\n";
     text += `From: ${message.firstName} ${message.lastName}\n`;
     text += `Date: ${new Date().toString()}\n`;
     text += `Subject: ${message.subject}\n\n`;
@@ -28,13 +31,15 @@ export const sendEmail = async (message: EmailData): Promise<EmailResponse> => {
         });
 
         const info = await transporter.sendMail({
-            from: `"${message.firstName} ${message.lastName}" <${process.env.EMAIL_USERNAME || "contact@aldevelop.com"}>`,
-            to: "alex@aldevelop.com",
+            from: `"AL Development" <${
+                process.env.EMAIL_USERNAME || "contact@aldevelop.com"
+            }>`,
+            to: `alex@aldevelop.com, ${message.email}`,
             subject: `[contact] ${message.subject}`,
             text: formatBody(message),
         });
 
-        transporter.sendMail
+        transporter.sendMail;
         return {
             info,
             error: null,

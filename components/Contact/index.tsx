@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Form, { FormRow, Text, Button } from "../Form";
-import { useDimensions } from "../../hooks/dimensions";
 import * as icons from "../icons";
 
 import styles from "../../styles/Contact.module.scss";
@@ -8,7 +7,7 @@ import styles from "../../styles/Contact.module.scss";
 export default function Contact() {
     const [copied, setCopied] = useState(false);
 
-    const [screenWidth, _] = useDimensions();
+    const isOnMobile = window?.innerWidth < 800;
 
     const onSubmit = async (data: EmailData) => {
         try {
@@ -43,7 +42,7 @@ export default function Contact() {
                 <br />
                 <br />
                 <Form onSubmit={onSubmit}>
-                    {(screenWidth > 800 && (
+                    {(!isOnMobile && (
                         <FormRow>
                             <Text
                                 name="firstName"
