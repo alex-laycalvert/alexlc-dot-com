@@ -59,7 +59,7 @@
 
 @media (max-width: $mobile-max-width) {
     .aboutMeWrapper {
-        margin: 20px;
+        margin: 0;
         max-height: calc(100% - $min-nav-width * 2 - 20px);
     }
 

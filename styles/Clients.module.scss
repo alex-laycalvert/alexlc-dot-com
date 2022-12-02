@@ -160,7 +160,7 @@
 
 @media (max-width: $mobile-max-width) {
     .clientsWrapper {
-        margin: 20px;
+        margin: 0;
         max-height: calc(100% - $min-nav-width * 2 - 20px);
     }
 

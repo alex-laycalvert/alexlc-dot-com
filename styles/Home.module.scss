@@ -10,6 +10,6 @@
 @media (max-width: $mobile-max-width) {
     .title {
         max-height: calc(100% - $min-nav-width * 2 - 10px);
-        max-width: calc(100% - 15px);
+        max-width: 100%;
     }
 }

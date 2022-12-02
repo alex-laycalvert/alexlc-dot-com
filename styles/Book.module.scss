@@ -67,6 +67,7 @@
     align-items: center;
     border-radius: $page-border-radius;
     overflow-y: scroll;
+    padding: 40px;
 }
 
 .nav {
@@ -172,9 +173,9 @@
     .book {
         padding: 5px;
     }
+
     .nav {
         width: calc(100% - 10px);
-        max-height: $min-nav-width;
         height: $min-nav-width;
         display: flex;
         flex-direction: row;
@@ -183,19 +184,26 @@
         border-top-right-radius: $page-border-radius;
         top: 5px;
         left: 5px;
-        animation: none;
-        transition: max-height 0.3s ease;
+        animation: springNavCollapseUp 0.4s;
+
+        .navIcon {
+            margin: calc($inner-spacing / 2);
+        }
     }
 
     .nav.expanded,
     .nav.locked {
-        max-height: 300px;
-        height: max-content;
+        height: $max-nav-height;
         width: calc(100% - 10px);
-        animation: none;
+        animation: springNavExpandDown 0.4s;
 
         .navItemList {
-            display: grid;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .navIcon {
+            margin: calc($inner-spacing / 4);
         }
     }
 
@@ -207,15 +215,15 @@
         display: none;
         height: 100%;
         width: 100%;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 5px 20px;
-        padding: 9px 0;
-        padding-right: 50px;
+        padding: 10px 0;
+        margin: 0;
     }
 
     .navItem {
+        width: 140px;
         border: 1px solid $color3;
         border-radius: 12px;
+        margin: calc($max-nav-height / 20) 0;
 
         .navItemLink {
             padding: 5px;
@@ -224,5 +232,15 @@
         &:hover {
             scale: 1.05;
         }
+    }
+}
+
+@media (max-width: 300px) {
+    .navItem {
+        width: auto;
+    }
+
+    .navItemText {
+        display: none;
     }
 }

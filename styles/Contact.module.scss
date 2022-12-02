@@ -1,8 +1,10 @@
 @import "./variables";
 
+.contactWrapper {
+    width: 70%;
+}
+
 .formWrapper {
-    width: 50%;
-    height: 53%;
 }
 
 .formTitle {
@@ -23,10 +25,11 @@
 .emailCopyButton {
     all: unset;
     cursor: pointer;
-        transition: all 0.2s ease;
+    transition: all 0.2s ease;
 
     .emailToolTip {
         opacity: 0;
+        white-space: nowrap;
         background-color: $color2;
         color: $color3;
         text-align: center;
@@ -66,10 +69,13 @@
     }
 }
 
+.contactFooter {
+    margin-top: 50px;
+}
+
 @media (max-width: $mobile-max-width) {
-    .formWrapper {
-        margin: 20px;
+    .contactWrapper {
         width: 100%;
-        max-height: calc(100% - $min-nav-width * 2 - 20px);
+        height: calc(100% - $min-nav-width * 2 - 20px);
     }
 }

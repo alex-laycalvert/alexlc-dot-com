@@ -4,6 +4,7 @@ $inner-spacing: 25px;
 $icon-size: 40px;
 $min-nav-width: 100px;
 $max-nav-width: 220px;
+$max-nav-height: 300px;
 $page-border-radius: 20px;
 
 // Fonts
@@ -92,5 +93,33 @@ $large-shadow: 4px 8px 6px rgba(0, 0, 0, 0.25);
 
     to {
         width: $min-nav-width;
+    }
+}
+
+@keyframes springNavExpandDown {
+    from {
+        height: $min-nav-width;
+    }
+
+    60% {
+        height: calc($max-nav-height + 5px);
+    }
+
+    to {
+        height: $max-nav-height;
+    }
+}
+
+@keyframes springNavCollapseUp {
+    from {
+        height: $max-nav-height;
+    }
+
+    60% {
+        height: calc($min-nav-width - 5px);
+    }
+
+    to {
+        height: $min-nav-width;
     }
 }
