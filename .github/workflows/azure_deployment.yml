@@ -28,7 +28,7 @@ jobs:
           npm run test --if-present
       
       - name: Compress artifact
-        run: zip -r aldevelop.zip pages/ public/ styles/ utils/ type/ components/ node_modules/ .next/ server.js web.config .eslintrc.json .gitignore .prettierrc README.md next.config.js package.json package-lock.json tsconfig.json
+        run: zip -r aldevelop.zip pages/ public/ styles/ utils/ type/ components/ hooks/ node_modules/ .next/ server.js web.config .eslintrc.json .gitignore .prettierrc README.md next.config.js package.json package-lock.json tsconfig.json
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
