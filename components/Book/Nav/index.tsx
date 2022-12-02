@@ -1,6 +1,7 @@
 import { useState } from "react";
 import List from "./List";
 import type { PageItem } from "./Item";
+import { useDimensions } from "../../../hooks/dimensions";
 import * as icons from "../../icons";
 
 import styles from "../../../styles/Book.module.scss";
@@ -26,25 +27,24 @@ export default function Nav({
 }: Props) {
     const [expanded, setExpanded] = useState(false);
     const [locked, setLocked] = useState(false);
-
-    const onMobile = window?.innerWidth < 800;
+    const [screenWidth, _] = useDimensions();
 
     const onHover = () => {
-        if (locked || onMobile) {
+        if (locked || screenWidth <= 800) {
             return;
         }
         setExpanded(true);
     };
 
     const onLeave = () => {
-        if (locked || onMobile) {
+        if (locked || screenWidth <= 800) {
             return;
         }
         setExpanded(false);
     };
 
     const onIconClick = () => {
-        if (!onMobile) {
+        if (screenWidth > 800) {
             setLocked(!locked);
             return;
         }
@@ -52,11 +52,11 @@ export default function Nav({
     };
 
     const onNavigate = () => {
-        if (!onMobile) {
+        if (screenWidth > 800) {
             return;
         }
         setExpanded(false);
-    }
+    };
 
     return (
         <nav
@@ -77,8 +77,10 @@ export default function Nav({
                 </div>
             )}
             <div className={styles.navIcon} onClick={onIconClick}>
-                {(!onMobile || !expanded) && <icons.ThreeLines color={expanded ? color : closedColor} />}
-                {onMobile && expanded && <icons.CloseX />}
+                {(screenWidth > 800 || !expanded) && (
+                    <icons.ThreeLines color={expanded ? color : closedColor} />
+                )}
+                {screenWidth <= 800 && expanded && <icons.CloseX />}
             </div>
             <div className={styles.navContent}>
                 <List

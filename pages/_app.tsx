@@ -18,12 +18,14 @@ export default function App({ Component, pageProps }: AppProps) {
                     images: [
                         {
                             url: "https://aldevelop.com/assets/images/logo.png",
-                            width: 600,
-                            height: 600,
                             alt: "AL Development Logo",
                             type: "image/png",
                         },
-                        { url: "https://aldevelop.com/assets/images/headshot.jpg" },
+                        {
+                            url: "https://aldevelop.com/assets/images/headshot.jpg",
+                            alt: "Alex Lay-Calvert Headshot",
+                            type: "image/jpeg",
+                        },
                     ],
                     siteName: "AL Development",
                     profile: {

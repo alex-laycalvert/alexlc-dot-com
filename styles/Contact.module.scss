@@ -5,6 +5,7 @@
 }
 
 .formWrapper {
+    width: 100%;
 }
 
 .formTitle {
@@ -76,6 +77,6 @@
 @media (max-width: $mobile-max-width) {
     .contactWrapper {
         width: 100%;
-        height: calc(100% - $min-nav-width * 2 - 20px);
+        max-height: calc(100% - $min-nav-width * 2 - 20px);
     }
 }

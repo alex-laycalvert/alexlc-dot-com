@@ -1,11 +1,14 @@
 import { useState } from "react";
 import Form, { FormRow, Text, Button } from "../Form";
+import { useDimensions } from "../../hooks/dimensions";
 import * as icons from "../icons";
 
 import styles from "../../styles/Contact.module.scss";
 
 export default function Contact() {
     const [copied, setCopied] = useState(false);
+
+    const [screenWidth, _] = useDimensions();
 
     const onSubmit = async (data: EmailData) => {
         try {
@@ -40,15 +43,41 @@ export default function Contact() {
                 <br />
                 <br />
                 <Form onSubmit={onSubmit}>
-                    <FormRow>
-                        <Text
-                            name="firstName"
-                            label="First Name"
-                            placeHolder="First Name"
-                            required
-                        />
-                        <Text name="lastName" label="Last Name" placeHolder="Last Name" required />
-                    </FormRow>
+                    {(screenWidth > 800 && (
+                        <FormRow>
+                            <Text
+                                name="firstName"
+                                label="First Name"
+                                placeHolder="First Name"
+                                required
+                            />
+                            <Text
+                                name="lastName"
+                                label="Last Name"
+                                placeHolder="Last Name"
+                                required
+                            />
+                        </FormRow>
+                    )) || (
+                        <>
+                            <FormRow>
+                                <Text
+                                    name="firstName"
+                                    label="First Name"
+                                    placeHolder="First Name"
+                                    required
+                                />
+                            </FormRow>
+                            <FormRow>
+                                <Text
+                                    name="lastName"
+                                    label="Last Name"
+                                    placeHolder="Last Name"
+                                    required
+                                />
+                            </FormRow>
+                        </>
+                    )}
                     <FormRow>
                         <Text name="email" label="Email" placeHolder="Email" email required />
                     </FormRow>
