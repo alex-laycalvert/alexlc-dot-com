@@ -5,3 +5,11 @@ interface EmailData {
     subject: string;
     body: string;
 }
+
+interface ClientInfo {
+    id: string;
+    name: string;
+    logo: string;
+    desc: string;
+    link: string;
+}

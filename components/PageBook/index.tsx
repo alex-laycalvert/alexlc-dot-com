@@ -1,5 +1,4 @@
-import Book from "../Book";
-import Page from "../Book/Page";
+import Book, { Page } from "../Book";
 import Home from "../Home";
 import Clients from "../Clients";
 import Resume from "../Resume";
@@ -19,15 +18,15 @@ export default function PageBook({ path }: Props) {
             icon: <icons.Home />,
         },
         {
-            name: "Clients",
-            path: "clients",
-            icon: <icons.Users />,
-        },
-        {
             name: "About Me",
             path: "about",
             icon: <icons.User />,
             hoverIcon: <icons.UserDetail />,
+        },
+        {
+            name: "Clients",
+            path: "clients",
+            icon: <icons.Users />,
         },
         {
             name: "Resume",
@@ -58,11 +57,11 @@ export default function PageBook({ path }: Props) {
             <Page name="Home">
                 <Home />
             </Page>
-            <Page name="Clients">
-                <Clients clientBackground="#161e3e" />
-            </Page>
             <Page name="About Me">
                 <About />
+            </Page>
+            <Page name="Clients">
+                <Clients clientBackground="#161e3e" />
             </Page>
             <Page name="Resume">
                 <Resume />

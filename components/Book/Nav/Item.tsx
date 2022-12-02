@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import Typewriter from "typewriter-effect";
@@ -17,9 +16,9 @@ interface Props {
     color: string;
     selectedColor: string;
     selectedBackground: string;
-    turnToPage: (name: string) => void;
     isCurrentPage?: boolean;
     expanded: boolean;
+    onNavigate: () => void;
 }
 
 export default function Item({
@@ -27,73 +26,40 @@ export default function Item({
     color,
     selectedColor,
     selectedBackground,
-    turnToPage,
     expanded,
+    onNavigate,
 }: Props) {
     const ref = useRef<HTMLLIElement>(null);
-    const [icon, setIcon] = useState(item.icon);
-    const [scale, setScale] = useState(1);
-    const [backgroundWidth, setBackgroundWidth] = useState(0);
-    const [itemColor, setItemColor] = useState(color);
+    const [hovering, setHovering] = useState(false);
 
     const onHover = () => {
-        setIcon(item.hoverIcon ?? item.icon);
-        setScale(1.1);
-        setBackgroundWidth(150);
-        setItemColor(selectedColor);
+        setHovering(true);
     };
 
     const onLeave = () => {
-        setIcon(item.icon);
-        setScale(1);
-        setBackgroundWidth(0);
-        setItemColor(color);
-    };
-
-    const onClick = () => {
-        turnToPage(item.name);
+        setHovering(false);
     };
 
     return (
-        <motion.li
-            ref={ref}
-            className={styles.navItem}
-            onHoverStart={onHover}
-            onHoverEnd={onLeave}
-            animate={{
-                scale,
-            }}
-        >
-            <Link className={styles.navItemButton} href={item.path}>
+        <li ref={ref} className={styles.navItem} onMouseEnter={onHover} onMouseLeave={onLeave}>
+            <Link
+                className={styles.navItemLink}
+                href={item.path}
+                onClick={onNavigate}
+                style={{ background: hovering ? selectedBackground : "" }}
+            >
                 <div
-                    className={styles.navItemBackground}
-                    style={{
-                        height: (ref.current?.clientHeight ?? 0) + 10,
-                    }}
+                    className={styles.navItemIcon}
+                    style={{ color: hovering ? selectedColor : color }}
                 >
-                    <motion.div
-                        className={styles.navItemBackgroundBody}
-                        animate={{
-                            width: backgroundWidth,
-                        }}
-                        style={{
-                            background: selectedBackground,
-                        }}
-                    />
-                    <div
-                        className={styles.navItemBackgroundTriangle}
-                        style={{
-                            borderWidth: `${((ref.current?.clientHeight ?? 0) + 10.5) / 2}px`,
-                            borderLeftColor: selectedBackground,
-                            display: backgroundWidth === 0 ? "none" : "block",
-                        }}
-                    />
-                </div>
-                <div className={styles.navItemIcon} style={{ color: itemColor }}>
-                    {icon}
+                    {hovering && <>{item.hoverIcon ?? item.icon}</>}
+                    {!hovering && <>{item.icon}</>}
                 </div>
                 {expanded && (
-                    <div className={styles.navItemText} style={{ color: itemColor }}>
+                    <div
+                        className={styles.navItemText}
+                        style={{ color: hovering ? selectedColor : color }}
+                    >
                         <Typewriter
                             options={{
                                 delay: 60,
@@ -105,6 +71,6 @@ export default function Item({
                     </div>
                 )}
             </Link>
-        </motion.li>
+        </li>
     );
 }

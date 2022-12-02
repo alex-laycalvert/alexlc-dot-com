@@ -1,7 +1,16 @@
 // Spacing/Padding/Margin
-$outer-spacing: 15px;
+$outer-spacing: 20px;
 $inner-spacing: 25px;
-$icon-size: 50px;
+$icon-size: 40px;
+$min-nav-width: 100px;
+$max-nav-width: 220px;
+$page-border-radius: 20px;
+
+// Fonts
+$header-size: 2.5rem;
+
+// Sizing 
+$mobile-max-width: 800px;
 
 // Colors
 $color1: #040111;
@@ -13,3 +22,75 @@ $main-background-gradient: linear-gradient(135deg, $color2 0%, $color1 100%);
 $small-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
 $medium-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 $large-shadow: 4px 8px 6px rgba(0, 0, 0, 0.25);
+
+
+// Animations
+@keyframes springRotate {
+    from {
+        rotate: 0deg;
+    }
+
+    50% {
+        rotate: 200deg;
+    }
+
+    to {
+        rotate: 180deg;
+    }
+}
+
+@keyframes springScaleUp {
+    from {
+        scale: 1;
+    }
+
+    50% {
+        scale: 1.4;
+    }
+
+    to {
+        scale: 1.3;
+    }
+}
+
+@keyframes springScaleDown {
+    from {
+        scale: 1.3;
+    }
+
+    50% {
+        scale: 0.95;
+    }
+
+    to {
+        scale: 1;
+    }
+}
+
+@keyframes springNavExpand {
+    from {
+        width: $min-nav-width;
+    }
+
+    60% {
+        width: calc($max-nav-width + 5px);
+    }
+
+    to {
+        width: $max-nav-width;
+    }
+}
+
+@keyframes springNavCollapse {
+    from {
+        width: $max-nav-width;
+    }
+
+    60% {
+        width: calc($min-nav-width - 5px);
+    }
+
+    to {
+        width: $min-nav-width;
+    }
+}

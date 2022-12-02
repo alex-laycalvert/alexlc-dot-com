@@ -35,7 +35,7 @@ export default function Page({
             key={currentPageIndex}
             id={name}
             custom={direction}
-            className={styles.page}
+            className={styles.page + ' drag'}
             variants={variants}
             initial="enter"
             animate="center"

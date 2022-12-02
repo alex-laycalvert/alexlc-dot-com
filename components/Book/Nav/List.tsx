@@ -8,9 +8,9 @@ interface Props {
     color: string;
     selectedColor: string;
     selectedBackground: string;
-    turnToPage: (name: string) => void;
     currentPage?: string;
     expanded: boolean;
+    onNavigate: () => void;
 }
 
 export default function List({
@@ -18,9 +18,9 @@ export default function List({
     color,
     selectedColor,
     selectedBackground,
-    turnToPage,
     currentPage,
     expanded,
+    onNavigate
 }: Props) {
     return (
         <ul className={styles.navItemList}>
@@ -31,9 +31,9 @@ export default function List({
                     color={color}
                     selectedColor={selectedColor}
                     selectedBackground={selectedBackground}
-                    turnToPage={turnToPage}
                     isCurrentPage={page.name === currentPage}
                     expanded={expanded}
+                    onNavigate={onNavigate}
                 />
             ))}
         </ul>

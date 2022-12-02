@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import List from "./List";
 import type { PageItem } from "./Item";
 import * as icons from "../../icons";
@@ -13,7 +12,6 @@ interface Props {
     closedColor: string;
     selectedColor: string;
     selectedBackground: string;
-    turnToPage: (name: string) => void;
     currentPage?: string;
 }
 
@@ -24,39 +22,47 @@ export default function Nav({
     selectedColor,
     selectedBackground,
     closedColor,
-    turnToPage,
     currentPage,
 }: Props) {
     const [expanded, setExpanded] = useState(false);
     const [locked, setLocked] = useState(false);
-    const [iconRotate, setIconRotate] = useState(0);
+
+    const onMobile = window?.innerWidth < 800;
 
     const onHover = () => {
-        if (locked) {
+        if (locked || onMobile) {
             return;
         }
         setExpanded(true);
     };
 
     const onLeave = () => {
-        if (locked) {
+        if (locked || onMobile) {
             return;
         }
         setExpanded(false);
     };
 
     const onIconClick = () => {
-        setLocked(!locked);
-        setIconRotate(i => Math.abs(i - 180));
+        if (!onMobile) {
+            setLocked(!locked);
+            return;
+        }
+        setExpanded(!expanded);
     };
 
-    useEffect(() => {
-        setIconRotate(Math.abs(iconRotate - 180));
-    }, [expanded]);
+    const onNavigate = () => {
+        if (!onMobile) {
+            return;
+        }
+        setExpanded(false);
+    }
 
     return (
         <nav
-            className={`${styles.nav} ${expanded ? styles.expanded : ""}`}
+            className={`${styles.nav} ${expanded ? styles.expanded : ""} ${
+                locked ? styles.locked : ""
+            }`}
             onMouseEnter={onHover}
             onMouseLeave={onLeave}
             style={{
@@ -70,24 +76,19 @@ export default function Nav({
                     {!locked && <icons.UnlockThreeLines color={color} />}
                 </div>
             )}
-            <motion.div
-                className={styles.navIcon}
-                onClick={onIconClick}
-                animate={{
-                    rotate: iconRotate,
-                }}
-            >
-                <icons.ThreeLines color={expanded ? color : closedColor} />
-            </motion.div>
+            <div className={styles.navIcon} onClick={onIconClick}>
+                {(!onMobile || !expanded) && <icons.ThreeLines color={expanded ? color : closedColor} />}
+                {onMobile && expanded && <icons.CloseX />}
+            </div>
             <div className={styles.navContent}>
                 <List
                     pages={pages}
                     color={color}
                     selectedColor={selectedColor}
                     selectedBackground={selectedBackground}
-                    turnToPage={turnToPage}
                     currentPage={currentPage}
                     expanded={expanded}
+                    onNavigate={onNavigate}
                 />
             </div>
         </nav>

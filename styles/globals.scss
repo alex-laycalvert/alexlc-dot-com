@@ -6,7 +6,10 @@ body {
     margin: 0;
     background: white;
     font-family: "Raleway", sans-serif;
-    -ms-overflow-style: none;
+    overflow: hidden;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 a {
