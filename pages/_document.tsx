@@ -16,6 +16,14 @@ export default function Document() {
                 />
             </Head>
             <body>
+                <call-us-selector
+                    phonesystem-url="https://1234.3cx.cloud"
+                    party="aldevelopment"
+                ></call-us-selector>
+                <script
+                    defer="defer"
+                    src="https://downloads-global.3cx.com/downloads/livechatandtalk/v1/callus.js"
+                ></script>
                 <Main />
                 <NextScript />
             </body>

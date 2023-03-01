@@ -38,7 +38,7 @@
 }
 
 .prevPageButton {
-    bottom: calc($outer-spacing + $inner-spacing - 10px);
+    top: calc($outer-spacing + $inner-spacing - 10px);
     right: calc($outer-spacing + $inner-spacing * 3);
 
     svg {
@@ -47,7 +47,7 @@
 }
 
 .nextPageButton {
-    bottom: calc($outer-spacing + $inner-spacing - 10px);
+    top: calc($outer-spacing + $inner-spacing - 10px);
     right: calc($outer-spacing + $inner-spacing);
 }
 

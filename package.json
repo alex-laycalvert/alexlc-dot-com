@@ -6,7 +6,7 @@
     "lint": "next lint",
     "dev": "next dev",
     "build": "next build",
-    "start": "node server.js",
+    "start": "NODE_ENV=production node server.js",
     "test": "echo \"No Tests Present\""
   },
   "dependencies": {
