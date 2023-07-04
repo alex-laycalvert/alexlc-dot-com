@@ -1,3 +1,5 @@
+import InteractiveBackground from "@/components/InteractiveBackground";
+
 import "@/styles/globals.css";
 
 type Props = {
@@ -12,7 +14,10 @@ export const metadata = {
 export default function RootLayout({ children }: Props) {
     return (
         <html lang="en">
-            <body className="font-raleway">{children}</body>
+            <body className="font-raleway">
+                {children}
+                <InteractiveBackground />
+            </body>
         </html>
     );
 }
