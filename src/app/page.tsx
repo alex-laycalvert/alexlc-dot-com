@@ -122,13 +122,17 @@ export default function Page() {
                 )}
             </nav>
             <div className="flex h-full w-full flex-col flex-col flex-col items-center justify-center">
-                <h1 className="text-3xl font-bold sm:text-5xl md:text-5xl lg:text-5xl">
-                    <div className="text-white">ALEX</div>
-                    <div className="text-orange">LAY-CALVERT</div>
-                </h1>
-                <h2 className="text-lg text-green">
-                    <i>&nbsp;&nbsp;web developer | student | USMC reservist</i>
-                </h2>
+                <div>
+                    <h1 className="text-3xl font-bold sm:text-5xl md:text-5xl lg:text-5xl">
+                        <div className="text-white">ALEX</div>
+                        <div className="text-orange">LAY-CALVERT</div>
+                    </h1>
+                    <h2 className="text-sm text-green md:text-lg">
+                        <i>
+                            web developer | student | USMC reservist
+                        </i>
+                    </h2>
+                </div>
             </div>
             <div className="flex w-full items-center justify-center space-x-4 md:space-x-12">
                 {links.map((l) => (
