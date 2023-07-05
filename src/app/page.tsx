@@ -45,8 +45,8 @@ export default function Page() {
                         height={921}
                         priority
                     />
-                    <div className="z-[100] flex h-full w-5/6 flex-col space-y-4 bg-dark md:w-160">
-                        <h2 className="text-3xl font-semibold text-white md:text-5xl">
+                    <div className="flex h-full w-5/6 flex-col space-y-4 md:w-160">
+                        <h2 className="z-[100] text-3xl font-semibold text-white md:text-5xl">
                             Hi, I&apos;m&nbsp;
                             <span className="font-extrabold text-red">
                                 Alex
@@ -59,7 +59,7 @@ export default function Page() {
                             </i>
                         </h3>
                         <hr className="border-red" />
-                        <p className="text-sm font-[500] !leading-10 text-gray-300 md:text-base">
+                        <p className="z-[100] text-sm font-[500] !leading-10 text-gray-300 md:text-base">
                             I am a{" "}
                             <b className="text-base text-white">
                                 web developer
@@ -69,7 +69,7 @@ export default function Page() {
                             <GradientText
                                 text="University of South Carolina"
                                 link="https://sc.edu/"
-                                className="text-base font-bold underline decoration-white"
+                                className="text-base font-bold"
                             />{" "}
                             I also am in the{" "}
                             <b className="text-base text-white">
@@ -86,23 +86,23 @@ export default function Page() {
                             <GradientText
                                 text="TypeScript/JavaScript"
                                 link="https://www.typescriptlang.org"
-                                className="text-base font-bold underline decoration-white"
+                                className="text-base font-bold"
                             />{" "}
                             and frameworks like{" "}
                             <GradientText
                                 text="Next.js"
                                 link="https://nextjs.org/"
-                                className="text-base font-bold underline decoration-white"
+                                className="text-base font-bold"
                             />{" "}
                             and{" "}
                             <GradientText
                                 text="React.js"
                                 link="https://react.dev/"
-                                className="text-base font-bold underline decoration-white"
+                                className="text-base font-bold"
                             />
                             .
                         </p>
-                        <div className="!mt-auto font-[500] text-white">
+                        <div className="!mt-auto z-[100] font-[500] text-white">
                             Clients:{" "}
                             {[
                                 {

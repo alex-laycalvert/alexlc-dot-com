@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import styles from "@/styles/GradientText.module.css";
 
 type Props = {
     className?: string;
@@ -15,9 +14,17 @@ const GradientText: React.FC<Props> = ({ className, text, link }) => {
             <Link
                 href={link}
                 target="_blank"
-                className={`${
-                    styles.gradientText ?? ""
-                } !bg-clip-text !text-transparent ${className ?? ""}`}
+                className={`!bg-clip-text !text-transparent ${
+                    className ?? ""
+                } bg-gradientText transition-all`}
+                onMouseEnter={(e) => {
+                    const target = e.target as HTMLElement;
+                    target.style.setProperty("--r", "50%");
+                }}
+                onMouseLeave={(e) => {
+                    const target = e.target as HTMLElement;
+                    target.style.setProperty("--r", "0%");
+                }}
                 onMouseMove={(e) => {
                     const target = e.target as HTMLElement;
                     const { x, y } = target.getBoundingClientRect();
@@ -32,9 +39,9 @@ const GradientText: React.FC<Props> = ({ className, text, link }) => {
 
     return (
         <span
-            className={`${
-                styles.gradientText ?? ""
-            } !bg-clip-text !text-transparent ${className ?? ""}`}
+            className={`bg-gradientText !bg-clip-text !text-transparent ${
+                className ?? ""
+            }`}
             onMouseMove={(e) => {
                 const target = e.target as HTMLElement;
                 const { x, y } = target.getBoundingClientRect();
