@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function InteractiveBackground() {
     const [cellSize /*setCellSize*/] = useState(40);
-    const [cellChar, setCellChar] = useState("@");
+    const [cellChar, setCellChar] = useState("+");
     const [cellFontSize, setCellFontSize] = useState(1);
     //const [bgColor, setBgColor] = useState("#000000");
     //const [cellColor, setCellColor] = useState("#ffffff");
@@ -17,12 +17,38 @@ export default function InteractiveBackground() {
         });
     };
 
-    const keydown = (e: { key: string }) => {
+    const keydown = (e: { key: string; preventDefault: () => void }) => {
         if (e.key === "ArrowUp") {
+            e.preventDefault();
             setCellFontSize((p) => (p < 7 ? p + 1 : p));
         } else if (e.key === "ArrowDown") {
+            e.preventDefault();
             setCellFontSize((p) => (p > 1 ? p - 1 : p));
-        } else {
+        } else if (
+            ![
+                " ",
+                "NumLock",
+                "Backspace",
+                "Enter",
+                "Pause",
+                "ScrollLock",
+                "PrintScreen",
+                "Home",
+                "End",
+                "Delete",
+                "Insert",
+                "PageUp",
+                "PageDown",
+                "Shift",
+                "Control",
+                "Meta",
+                "Alt",
+                "Escape",
+                "Tab",
+                "ArrowLeft",
+                "ArrowRight",
+            ].includes(e.key)
+        ) {
             setCellChar(e.key);
         }
     };
@@ -38,7 +64,7 @@ export default function InteractiveBackground() {
     }, []);
 
     return (
-        <div className="absolute left-0 top-0 flex flex h-full w-full flex-col overflow-hidden">
+        <div className="fixed left-0 top-0 flex flex h-full w-full flex-col overflow-hidden">
             {Array.from({ length: dimensions.height }, (_, r) => (
                 <div key={`ROW_${r}`} className="flex h-full w-full">
                     {Array.from({ length: dimensions.width }, (_, c) => {
