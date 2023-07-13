@@ -24,7 +24,7 @@ const BusinessCard: React.FC = () => {
             }}
         >
             <div className="z-[100]">
-                {position.x !== 0 && position.y !== 0 && (
+                {false && position.x !== 0 && position.y !== 0 && (
                     <button
                         className="flex items-center space-x-1 bg-dark text-lg font-semibold text-gray-500 transition-colors hover:text-red"
                         onClick={reset}
