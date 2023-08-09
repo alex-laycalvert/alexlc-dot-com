@@ -2,7 +2,7 @@
 	import "../app.css";
 </script>
 
-<main class="w-full min-h-screen flex justify-center">
+<main class="w-full min-h-screen flex justify-center font-body">
 	<div class="w-full max-w-[1440px]">
 		<slot />
 	</div>
