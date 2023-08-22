@@ -10,7 +10,7 @@ import (
 const (
 	PAGES_DIR      = "templates/pages"
 	LAYOUTS_DIR    = "templates/layouts"
-	COMPONENTS_DIR = "templates/layouts"
+	COMPONENTS_DIR = "templates/components"
 )
 
 func main() {
@@ -20,17 +20,19 @@ func main() {
 }
 
 func Handler(res http.ResponseWriter, req *http.Request) {
-	path := PAGES_DIR + req.URL.Path
+	path := req.URL.Path
 	if path[len(path)-1] == '/' {
 		path = path[0 : len(path)-1]
 	}
-	if _, err := os.Stat(path + ".html"); err != nil {
+	filename := PAGES_DIR + path
+	if _, err := os.Stat(filename + ".html"); err != nil {
 		if os.IsNotExist(err) {
 			path += "/index"
-			if _, err := os.Stat(path + ".html"); err != nil {
+			filename = PAGES_DIR + path
+			if _, err := os.Stat(filename + ".html"); err != nil {
 				if os.IsNotExist(err) {
-					http.Error(res, req.URL.Path, http.StatusNotFound)
-					log.Printf("404 " + req.URL.Path + " NOT FOUND (looking for '" + path + "')")
+					http.Error(res, path, http.StatusNotFound)
+					log.Printf("404 " + req.URL.Path + " NOT FOUND (looking for '" + filename + ".html')")
 					return
 				} else {
 					http.Error(res, err.Error(), http.StatusInternalServerError)
@@ -45,7 +47,7 @@ func Handler(res http.ResponseWriter, req *http.Request) {
 		}
 	}
 	log.Printf("200 " + req.URL.Path + " OK")
-	if err := RenderPage(res, req.URL.Path, struct{}{}); err != nil {
+	if err := RenderPage(res, path, struct{}{}); err != nil {
 		http.Error(res, err.Error(), http.StatusInternalServerError)
 		log.Printf("500 " + req.URL.Path + " INTERNAL SERVER ERROR (" + err.Error() + ")")
 		return
