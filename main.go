@@ -16,7 +16,8 @@ const (
 func main() {
 	log.Println("Starting server on port 3000...")
 	http.HandleFunc("/", Handler)
-	log.Fatalln(http.ListenAndServe(":3000", nil))
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 
 func Handler(res http.ResponseWriter, req *http.Request) {

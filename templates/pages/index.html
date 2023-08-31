@@ -1,3 +1,29 @@
 {{define "content"}}
-<h1>hello</h1>
+<header class="flex justify-between items-center p-4 text-2xl">
+  <a href="/"><h1 class="font-bold text">Alex L-C</h1></a>
+  <div class="flex items-center space-x-4 pt-[0.3rem]">
+    <a
+      href="https://github.com/alex-laycalvert"
+      class="icon"
+      target="_blank"
+      _="on mousedown toggle .scale-[0.9] on me"
+    >
+      <iconify-icon icon="line-md:github"></iconify-icon>
+    </a>
+    <a
+      href="https://www.linkedin.com/in/alexander-lay-calvert-2179501b4/"
+      class="icon"
+      target="_blank"
+    >
+      <iconify-icon icon="line-md:linkedin" />
+    </a>
+    <a href="https://twitter.com/alex_layc" class="icon" target="_blank">
+      <iconify-icon icon="line-md:twitter"></iconify-icon>
+    </a>
+  </div>
+</header>
+<main>
+  <interactive-button>hello</interactive-button>
+</main>
+<footer></footer>
 {{end}}
