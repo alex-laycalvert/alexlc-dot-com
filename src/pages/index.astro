@@ -2,54 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<script>
-    const buttons = document.querySelectorAll("[data-interactive-button]");
-    const classes: string[] = ["bg-green-100"];
-    function onDown(e: Event) {
-        const button = e.currentTarget as HTMLButtonElement;
-    }
-    function onUp(e: Event) {
-        const button = e.currentTarget as HTMLButtonElement;
-    }
-    buttons.forEach((button) => {
-        button.addEventListener("touchstart", onDown);
-        button.addEventListener("touchend", onUp);
-        button.addEventListener("mousedown", onDown);
-        button.addEventListener("mouseup", onUp);
-    });
-</script>
 <Layout>
-    <header class="p-4 flex justify-between">
-        <h1 class="text-4xl font-bold">Alex L-C</h1>
-        <ul class="flex text-3xl space-x-2">
-            <li>
-                <button
-                    class="transition-all rounded bg-gray-200 border border-gray-500 aspect-square w-10 flex items-center justify-center text-gray-500"
-                    data-interactive-button
-                >
-                    <iconify-icon icon="line-md:github"></iconify-icon>
-                </button>
-            </li>
-            <li>
-                <a href="/">
-                    <button
-                        class="rounded bg-gray-200 border border-gray-500 aspect-square w-10 flex items-center justify-center text-gray-500"
-                    >
-                        <iconify-icon icon="line-md:linkedin"></iconify-icon>
-                    </button>
-                </a>
-            </li>
-            <li>
-                <a href="/">
-                    <button
-                        class="rounded bg-gray-200 border border-gray-500 aspect-square w-10 flex items-center justify-center text-gray-500"
-                    >
-                        <iconify-icon icon="line-md:twitter"></iconify-icon>
-                    </button>
-                </a>
-            </li>
-        </ul>
-    </header>
-    <main></main>
-    <footer></footer>
+    <main class="h-full flex items-center justify-center">
+        <div class="border aspect-[3.5/2] w-96 rounded-sm p-4">
+            <h1 class="font-bold text-5xl">Alex L-C</h1>
+        </div>
+    </main>
 </Layout>
