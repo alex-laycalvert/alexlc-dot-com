@@ -1,0 +1,17 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../layouts/Layout.astro";
+
+export const getStaticPaths = (() => {
+    return [
+        { params: { item: "whoami" } },
+        { params: { item: "about" } },
+        { params: { item: "projects" } },
+        { params: { item: "resume" } },
+        { params: { item: "blog" } },
+        { params: { item: "dogs" } },
+    ];
+}) satisfies GetStaticPaths;
+---
+
+<Layout title="Alex L-C" />

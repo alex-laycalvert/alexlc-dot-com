@@ -1,0 +1,200 @@
+---
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body class="overflow-hidden">
+        <div id="three-container" class="h-screen w-screen"></div>
+        <slot />
+    </body>
+    <style is:global></style>
+    <script>
+        import * as THREE from "three";
+        import {
+            type Font,
+            FontLoader,
+            TextGeometry,
+        } from "three/examples/jsm/Addons.js";
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const container =
+                document.querySelector<HTMLElement>("#three-container")!;
+            const fontLoader = new FontLoader();
+            const lunasimaRegular = await new Promise<Font>((resolve) => {
+                fontLoader.load("fonts/lunasima_regular.json", (font) => {
+                    resolve(font);
+                });
+            });
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(
+                75,
+                container.clientWidth / container.clientHeight,
+                0.1,
+                1000,
+            );
+            const renderer = new THREE.WebGLRenderer();
+            renderer.domElement.style.overflow = "hidden";
+            container.appendChild(renderer.domElement);
+
+            camera.position.z = 15;
+
+            const itemGroup = new THREE.Group();
+            const items = [
+                {
+                    name: "whoami",
+                    body: itemTextMesh("whoami"),
+                },
+                {
+                    name: "about",
+                    body: itemTextMesh("about me"),
+                },
+                {
+                    name: "projects",
+                    body: itemTextMesh("projects"),
+                },
+                {
+                    name: "resume",
+                    body: itemTextMesh("resume"),
+                },
+                {
+                    name: "blog",
+                    body: itemTextMesh("  blog"),
+                },
+                {
+                    name: "dogs",
+                    body: itemTextMesh("  dogs"),
+                },
+            ];
+
+            let targetRotationZ = 0;
+            let currentRotationZ = 0;
+            let currentItem = 0;
+
+            init();
+
+            itemGroup.position.y -= 1;
+            itemGroup.position.x -= 0.5;
+            itemGroup.rotateX(-Math.PI / 2.5);
+            scene.add(itemGroup);
+
+            function render() {
+                requestAnimationFrame(render);
+
+                const diff = (targetRotationZ - currentRotationZ) * 0.04;
+                currentRotationZ += diff;
+                itemGroup.rotation.z = currentRotationZ;
+                items.forEach((i) => {
+                    i.body.lookAt(camera.position);
+                    i.body.rotateZ(-0.04);
+                });
+
+                renderer.render(scene, camera);
+            }
+            render();
+
+            let isScrolling = false;
+
+            renderer.domElement.addEventListener("wheel", (e) => {
+                if (isScrolling) {
+                    return;
+                }
+                isScrolling = true;
+                changeItem(Math.sign(e.deltaY));
+                setTimeout(() => (isScrolling = false), 250);
+            });
+
+            window.addEventListener("keydown", (e) => {
+                switch (e.key) {
+                    case "l":
+                    case "d":
+                    case "ArrowRight":
+                        changeItem(1);
+                        break;
+                    case "h":
+                    case "a":
+                    case "ArrowLeft":
+                        changeItem(-1);
+                        break;
+                    default:
+                        break;
+                }
+            });
+            window.addEventListener("resize", () => {
+                init();
+            });
+
+            function init() {
+                currentItem = 0;
+                targetRotationZ = 0;
+                currentRotationZ = 0;
+                const page = window.location.pathname.replace("/", "");
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                const radius = container.clientWidth / 200;
+                itemGroup.children = [];
+                for (let i = 0; i < items.length; i++) {
+                    const angle =
+                        (2 * Math.PI * i) / items.length -
+                        (3 * Math.PI) / items.length;
+                    const x = radius * Math.cos(angle);
+                    const y = radius * Math.sin(angle);
+                    items[i].body.position.set(x, y, 0);
+                    itemGroup.add(items[i].body);
+                }
+
+                if (page !== "") {
+                    const itemIndex = items.findIndex((i) => i.name === page);
+                    changeItem(1, itemIndex);
+                }
+            }
+
+            function changeItem(dir: number, amount = 1) {
+                dir = Math.sign(dir);
+                console.log("old", currentItem);
+                currentItem =
+                    (currentItem + dir * Math.abs(amount)) % items.length;
+                console.log("new", currentItem);
+                if (currentItem < 0) {
+                    currentItem += items.length;
+                }
+                targetRotationZ +=
+                    (amount * (-dir * 2 * Math.PI)) / items.length;
+                history.pushState({}, "", `/${items[currentItem].name}`);
+            }
+
+            function itemTextMesh(
+                text: string,
+                color: number = 0xffffff,
+                font: Font = lunasimaRegular,
+                scale: number = 0.0025,
+            ) {
+                return new THREE.Mesh(
+                    new TextGeometry(text, {
+                        font,
+                        size: 80,
+                        height: 5,
+                        curveSegments: 12,
+                        bevelEnabled: true,
+                        bevelThickness: 2,
+                        bevelSize: 2,
+                    }).scale(scale, scale, scale),
+                    new THREE.MeshBasicMaterial({
+                        color,
+                    }),
+                );
+            }
+        });
+    </script>
+</html>
